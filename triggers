@@ -9,6 +9,7 @@ triggers:-
 8. Update in Title of movie should remove its ratings.
 9. Update in content of comment should update date posted for that comment.
 10. Any deletion of Comment_user should update votes of the comment
+11. if stage is deleted corrsponding awards should be deleted.
 
 
 procedures and functions
