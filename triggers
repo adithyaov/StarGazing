@@ -1,9 +1,14 @@
 triggers:-
 1. Any entry in Movie_user should update rating of movie.
 2. Any entry in Comment_user should update no of upvotes and downvotes in Comment table.
-3. 
-4.
-
+3. After insert in movie insert in genre with NA.
+4. Any update in Movie_user should update rating of movie.
+5. Any deletion in Movie_user should update rating of movie.
+6. Any update in Comment_user should update no of upvotes and downvotes in Comment table.
+7. Update in content of comment should  remove number of upvotes and downvotes for that comment.
+8. Update in Title of movie should remove its ratings.
+9. Update in content of comment should update date posted for that comment.
+10.
 
 
 procedures and functions
@@ -19,3 +24,4 @@ procedures and functions
 9.All users who downvoted a comment.
 10. All user who rated a movie and their ratings.
 11. Best actor award winner in a stage in past years.
+12. user having age less that age rating of movie should not be allowed to rate that movie.(we dont currently have age as attribute for user)
