@@ -65,3 +65,35 @@ BEGIN
 END//
 DELIMITER ;
 
+DROP PROCEDURE comment_voters;
+DELIMITER //
+CREATE PROCEDURE comment_voters(IN comment_id INT, IN vote_status VARCHAR(2))
+BEGIN
+    SELECT u.id, u.name, u.email FROM Comment_user as cu
+        JOIN Comment as c on cu.comment_id = c.id
+        JOIN User as u on cu.user_id = u.id
+        WHERE cu.vote = vote_status;
+END//
+DELIMITER ;
+
+DROP PROCEDURE movie_raters;
+DELIMITER //
+CREATE PROCEDURE movie_raters(IN movie_id INT)
+BEGIN
+    SELECT u.id, u.name, u.email, mu.rating FROM Movie_user as mu
+        JOIN User as u on mu.user_id = u.id
+        WHERE mu.movie_id = movie_id;
+END//
+DELIMITER ;
+
+DROP PROCEDURE award_in_year;
+DELIMITER //
+CREATE PROCEDURE award_in_year(IN award_id INT, IN year INT)
+BEGIN
+    SELECT p.id, p.first_name, p.last_name, p.dob FROM Award_mpr_stage as ams
+        JOIN Movie_person_role as mpr on ams.mpr_id = mpr.id
+        JOIN Person as p on mpr.person_id = p.id
+        WHERE ams.award_id = award_id
+            AND YEAR(ams.won_in) = year;
+END//
+DELIMITER ;

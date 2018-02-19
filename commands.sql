@@ -98,6 +98,7 @@ CREATE TABLE Award_mpr_stage(
 	award_id INTEGER NOT NULL,
 	mpr_id INTEGER NOT NULL,
 	stage_id INTEGER NOT NULL,
+	won_in DATE NOT NULL,
 	UNIQUE KEY (award_id, mpr_id, stage_id),
 	FOREIGN KEY (award_id) REFERENCES Award(id) ON DELETE CASCADE,
 	FOREIGN KEY (mpr_id) REFERENCES Movie_person_role(id) ON DELETE CASCADE,
