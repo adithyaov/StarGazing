@@ -95,15 +95,15 @@ CREATE TABLE Movie_person_role(
 	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
-CREATE TABLE Award_person_stage(
+CREATE TABLE Award_mpr_stage(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	award_id INTEGER NOT NULL,
-	person_id INTEGER NOT NULL,
-	stage_id INTEGER,
-	UNIQUE KEY (award_id, person_id, stage_id),
+	mpr_id INTEGER NOT NULL,
+	stage_id INTEGER NOT NULL,
+	UNIQUE KEY (award_id, mpr_id, stage_id),
 	FOREIGN KEY (award_id) REFERENCES Award(id) ON DELETE CASCADE,
-	FOREIGN KEY (person_id) REFERENCES Person(id) ON DELETE CASCADE,
-	FOREIGN KEY (stage_id) REFERENCES Stage(id) ON DELETE SET NULL,
+	FOREIGN KEY (mpr_id) REFERENCES Movie_person_role(id) ON DELETE CASCADE,
+	FOREIGN KEY (stage_id) REFERENCES Stage(id) ON DELETE CASCADE,
 	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
