@@ -118,7 +118,7 @@ CREATE TABLE Genre_movie(
 CREATE TABLE Movie_user(
 	movie_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
-	rating INTEGER NOT NULL check(rating <= 5 && rating >= 0),
+	rating INTEGER NOT NULL CHECK(rating <= 5 && rating >= 0),
 	PRIMARY KEY (movie_id, user_id),
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,

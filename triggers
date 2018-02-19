@@ -13,13 +13,13 @@ triggers:-
 
 procedures and functions
 
-1. A procedure to return vg rated movies by a user.
-2. A function to calcutate avg rating of all movies of which a person is part of.
-3. A function to return number of movies a person has done.
+1. A procedure to return vg rated movies by a user. -- DONE
+2. A function to calcutate avg rating of all movies of which a person is part of. -- DONE
+3. A function to return number of movies a person has done. -- DONE
 4. A procedure to take backup of database regurarly.
-5. A procedure to get list of all awards won by a person.
-6. A procedure to return top 10 specific genre movie of specific year
-7. All roles played by a person.
+5. A procedure to get list of all awards won by a person. -- DONE
+6. A procedure to return top 10 specific genre movie of specific year -- DONE
+7. All roles played by a person. -- DONE
 8. All users who upvoted a comment.
 9. All users who downvoted a comment.
 10. All users who rated a movie and their ratings.
