@@ -28,10 +28,10 @@ procedures and functions
 13. A Procedure to check the entire consistency of the Database.
 14. A Procedure to archive comments of a specific year
 
--> Every field of every table in our DB will have an attribute called flag, deletion => setting flag to 0, Deletion will be under review.
+-> Every field of every table in our DB will have an attribute called flag, deletion => setting flag to 0, Deletion will be under review. -- Done
 
 Need to add
 
 1. avg rating for movie -- Done
 2. age for user -- Done
-3. mend the ERD dig for which our marks have been cut :-( -- Do it chobey !
+3. mend the ERD dig for which our marks have been cut :-( -- Done
