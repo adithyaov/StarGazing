@@ -33,6 +33,7 @@ CREATE TABLE Movie(
 	movie_title VARCHAR(128),
 	release_date DATE,
 	age_rating INTEGER
+	avg_rating FLOAT
 );
 
 CREATE TABLE Comment(
