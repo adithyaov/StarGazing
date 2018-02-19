@@ -29,3 +29,9 @@ procedures and functions
 14. A Procedure to archive comments of a specific year
 
 -> Every field of every table in our DB will have an attribute called flag, deletion => setting flag to 0, Deletion will be under review.
+
+Need to add
+
+1. avg rating for movie
+2. age for user
+3. mend the ERD dig for which our marks have been cut :-(
