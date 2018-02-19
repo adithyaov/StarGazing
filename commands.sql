@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS Award_mpr_stage;
+DROP TABLE IF EXISTS Movie_person_role;
+DROP TABLE IF EXISTS Genre_movie;
+DROP TABLE IF EXISTS Movie_user;
+DROP TABLE IF EXISTS Comment_user;
 DROP TABLE IF EXISTS Person;
 DROP TABLE IF EXISTS Role;
 DROP TABLE IF EXISTS Comment;
@@ -76,13 +81,6 @@ CREATE TABLE Stage(
 );
 
 
-DROP TABLE IF EXISTS Movie_person_role;
-DROP TABLE IF EXISTS Award_person_stage;
-DROP TABLE IF EXISTS Genre_movie;
-DROP TABLE IF EXISTS Movie_user;
-DROP TABLE IF EXISTS Comment_user;
-
-
 CREATE TABLE Movie_person_role(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	person_id INTEGER NOT NULL,
@@ -120,7 +118,7 @@ CREATE TABLE Genre_movie(
 CREATE TABLE Movie_user(
 	movie_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
-	rating ENUM('b', 'a', 'g', 'vg'),
+	rating INTEGER NOT NULL check(rating <= 5 && rating >= 0),
 	PRIMARY KEY (movie_id, user_id),
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
