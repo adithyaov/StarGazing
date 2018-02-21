@@ -1,15 +1,16 @@
 triggers:-
-1. Any entry in Movie_user should update rating of movie.
-2. Any entry in Comment_user should update no of upvotes and downvotes in Comment table.
-3. After insert in movie insert in genre with NA.
-4. Any update in Movie_user should update rating of movie.
-5. Any deletion in Movie_user should update rating of movie.
-6. Any update in Comment_user should update no of upvotes and downvotes in Comment table.
-7. Update in content of comment should  remove number of upvotes and downvotes for that comment.
-8. Update in Title of movie should remove its ratings.
-9. Update in content of comment should update date posted for that comment.
-10. Any deletion of Comment_user should update votes of the comment
+1. Any entry in Movie_user should update rating of movie. - done
+2. Any entry in Comment_user should update no of upvotes and downvotes in Comment table. - done
+3. After insert in movie insert in genre with NA. - canceled
+4. Any update in Movie_user should update rating of movie. - done
+5. Any deletion in Movie_user should update rating of movie. - done
+6. Any update in Comment_user should update no of upvotes and downvotes in Comment table. -done 
+7. Update in content of comment should  remove number of upvotes and downvotes for that comment.  -done
+8. Update in Title of movie should remove its ratings.   - done
+9. Update in content of comment should update date posted for that comment. -done
+10. Any deletion of Comment_user should update votes of the comment - done
 11. if stage is deleted corrsponding awards should be deleted.
+
 
 
 procedures and functions
@@ -28,6 +29,7 @@ procedures and functions
 12. User having age less that age rating of movie should not be allowed to rate that movie.(we dont currently have age as attribute for user).
 13. A Procedure to check the entire consistency of the Database.
 14. A Procedure to archive comments of a specific year
+15. created a function to count number of raters for a movie -done.
 
 -> Every field of every table in our DB will have an attribute called flag, deletion => setting flag to 0, Deletion will be under review. -- Done
 
