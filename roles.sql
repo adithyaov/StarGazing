@@ -130,7 +130,8 @@ grant delete on stargazing.Award_mpr_stage to 'b_award_mpr_stage_delete';
 
 -- Main Roles
 
--- Every role has select on everything
+-- Every role has select on everything except User
+-- Only m_client_help has select on User
 
 create role 'm_admin';
 -- Has everything
@@ -233,127 +234,44 @@ grant
     'b_movie_user_delete' to 'm_consistency_checker';
 
 create role 'm_client_help';
--- Has update, delete on User
+-- Has select, update, delete on User
 -- Has delete on Movie_user Comment_user
 grant
-    'b_user_select'
+    'b_user_select',
     'b_user_update',
     'b_user_delete',
     'b_movie_user_delete',
     'b_comment_user_delete' to 'm_client_help';
 
 -- grants for select can select * except user
--- grant
---     'b_person_select'
---     'b_role_select'
---     'b_stage_select'
---     'b_award_select'
---     'b_genre_select'
---     'b_movie_select'
---     'b_comment_select'
---     'b_comment_user_select'
---     'b_movie_user_select'
---     'b_genre_movie_select'
---     'b_movie_person_role_select'
---     'b_award_mpr_stage_select' to 
 
 grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_content_editor';
+    'b_person_select',
+    'b_role_select',
+    'b_stage_select',
+    'b_award_select',
+    'b_genre_select',
+    'b_movie_select',
+    'b_comment_select',
+    'b_comment_user_select',
+    'b_movie_user_select',
+    'b_genre_movie_select',
+    'b_movie_person_role_select',
+    'b_award_mpr_stage_select'
+to 
+    'm_content_editor', 
+    'm_movie_editor',
+    'm_cast_editor',
+    'm_award_editor',
+    'm_user_content_manager',
+    'm_consistency_checker',
+    'm_client_help';
 
-grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_movie_editor';
 
-grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_cast_editor';
 
-grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_award_editor';
 
-grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_user_content_manager';
 
-grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_consistency_checker';
 
-grant
-    'b_person_select'
-    'b_role_select'
-    'b_stage_select'
-    'b_award_select'
-    'b_genre_select'
-    'b_movie_select'
-    'b_comment_select'
-    'b_comment_user_select'
-    'b_movie_user_select'
-    'b_genre_movie_select'
-    'b_movie_person_role_select'
-    'b_award_mpr_stage_select' to 'm_client_help';
 
 
 
