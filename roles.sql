@@ -8,19 +8,6 @@
 -- DROP TABLE IF EXISTS Award_mpr_stage;
 -- DROP TABLE IF EXISTS Movie_person_role;
 
-DROP TABLE IF EXISTS Award_mpr_stage;
-DROP TABLE IF EXISTS Movie_person_role;
-DROP TABLE IF EXISTS Genre_movie;
-DROP TABLE IF EXISTS Movie_user;
-DROP TABLE IF EXISTS Comment_user;
-DROP TABLE IF EXISTS Person;
-DROP TABLE IF EXISTS Role;
-DROP TABLE IF EXISTS Comment;
-DROP TABLE IF EXISTS User;
-DROP TABLE IF EXISTS Movie;
-DROP TABLE IF EXISTS Genre;
-DROP TABLE IF EXISTS Award;
-DROP TABLE IF EXISTS Stage;
 
 -- Basic Roles
 
@@ -150,24 +137,105 @@ create role 'm_admin';
 
 create role 'm_content_editor';
 -- Has create, update, delete on Person Movie Genre Role Award Stage Movie_person_role Genre_movie Award_mpr_stage
+grant
+    'b_person_insert',
+    'b_person_update',
+    'b_person_delete',
+    'b_movie_insert',
+    'b_movie_update',
+    'b_movie_delete',
+    'b_genre_insert',
+    'b_genre_update',
+    'b_genre_delete',
+    'b_role_insert',
+    'b_role_update',
+    'b_role_delete',
+    'b_award_insert',
+    'b_award_update',
+    'b_award_delete',
+    'b_stage_insert',
+    'b_stage_update',
+    'b_stage_delete',
+    'b_movie_person_role_insert',
+    'b_movie_person_role_update',
+    'b_movie_person_role_delete',
+    'b_genre_movie_insert',
+    'b_genre_movie_update',
+    'b_genre_movie_delete',
+    'b_award_mpr_stage_insert',
+    'b_award_mpr_stage_update',
+    'b_award_mpr_stage_delete' to 'm_content_editor'
+
 
 create role 'm_movie_editor';
--- Has create, update, delete on Movie Genre Genre_movie Movie
+-- Has create, update, delete on Movie Genre Genre_movie
+grant
+    'b_movie_insert',
+    'b_movie_update',
+    'b_movie_delete',
+    'b_genre_insert',
+    'b_genre_update',
+    'b_genre_delete',
+    'b_genre_movie_insert',
+    'b_genre_movie_update',
+    'b_genre_movie_delete' to 'm_movie_editor'
 
 create role 'm_cast_editor';
 -- Has create, update, delete on Person Role Movie_person_role
+grant
+    'b_person_insert',
+    'b_person_update',
+    'b_person_delete',
+    'b_role_insert',
+    'b_role_update',
+    'b_role_delete',
+    'b_movie_person_role_insert',
+    'b_movie_person_role_update',
+    'b_movie_person_role_delete' to 'm_cast_editor'
+
 
 create role 'm_award_editor';
 -- Has create, update, delete on Award Stage Award_mpr_stage
+grant
+    'b_award_insert',
+    'b_award_update',
+    'b_award_delete',
+    'b_stage_insert',
+    'b_stage_update',
+    'b_stage_delete',
+    'b_award_mpr_stage_insert',
+    'b_award_mpr_stage_update',
+    'b_award_mpr_stage_delete' to 'm_award_editor'
 
 create role 'm_user_content_manager';
 -- Has update, delete on Comment
 -- Has delete on Comment_user
+grant
+    'b_comment_delete',
+    'b_comment_update',
+    'b_comment_user_delete' to 'm_content_editor'
 
 create role 'm_consistency_checker'
 -- Has create, update, delete on Award_mpr_stage Movie_person_role Genre_movie
 -- Has delete on Comment_user Movie_user
+grant
+    'b_movie_person_role_insert',
+    'b_movie_person_role_update',
+    'b_movie_person_role_delete',
+    'b_genre_movie_insert',
+    'b_genre_movie_update',
+    'b_genre_movie_delete',
+    'b_award_mpr_stage_insert',
+    'b_award_mpr_stage_update',
+    'b_award_mpr_stage_delete',
+    'b_comment_user_delete',
+    'b_movie_user_delete' to 'm_consistency_checker'
 
 create role 'm_client_help';
 -- Has update, delete on User
 -- Has delete on Movie_user Comment_user
+grant
+    'b_user_update',
+    'b_user_delete',
+    'b_movie_user_delete',
+    'b_comment_user_delete' to 'm_consistency_checker'
