@@ -22,6 +22,8 @@ DROP TABLE IF EXISTS Genre;
 DROP TABLE IF EXISTS Award;
 DROP TABLE IF EXISTS Stage;
 
+-- Basic Roles
+
 create role 'b_person_select';
 create role 'b_person_update';
 create role 'b_person_insert';
@@ -139,3 +141,33 @@ grant update on stargazing.Award_mpr_stage to 'b_award_mpr_stage_update';
 grant insert on stargazing.Award_mpr_stage to 'b_award_mpr_stage_insert';
 grant delete on stargazing.Award_mpr_stage to 'b_award_mpr_stage_delete';
 
+-- Main Roles
+
+-- Every role has select on everything
+
+create role 'm_admin';
+-- Has everything
+
+create role 'm_content_editor';
+-- Has create, update, delete on Person Movie Genre Role Award Stage Movie_person_role Genre_movie Award_mpr_stage
+
+create role 'm_movie_editor';
+-- Has create, update, delete on Movie Genre Genre_movie Movie
+
+create role 'm_cast_editor';
+-- Has create, update, delete on Person Role Movie_person_role
+
+create role 'm_award_editor';
+-- Has create, update, delete on Award Stage Award_mpr_stage
+
+create role 'm_user_content_manager';
+-- Has update, delete on Comment
+-- Has delete on Comment_user
+
+create role 'm_consistency_checker'
+-- Has create, update, delete on Award_mpr_stage Movie_person_role Genre_movie
+-- Has delete on Comment_user Movie_user
+
+create role 'm_client_help';
+-- Has update, delete on User
+-- Has delete on Movie_user Comment_user
