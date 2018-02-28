@@ -39,20 +39,19 @@ CREATE TABLE Movie(
 	movie_title VARCHAR(128),
 	release_date DATE,
 	age_rating INTEGER,
-	avg_rating FLOAT,
+	avg_rating FLOAT DEFAULT 0.0,
 );
 
 CREATE TABLE Comment(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	content TEXT,
 	date_posted DATE,
-	upvotes INTEGER,
-	downvotes INTEGER,
+	upvotes INTEGER DEFAULT 0,
+	downvotes INTEGER DEFAULT 0,
 	movie_id INTEGER NOT NULL,
 	user_id INTEGER,
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE SET NULL,
-	flag BOOLEAN NOT NULL DEFAULT 0	 
 );
 
 CREATE TABLE Genre(
