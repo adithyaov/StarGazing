@@ -85,22 +85,20 @@ CREATE TABLE Movie_person_role(
 );
 
 CREATE TABLE Award_mpr_stage(
-	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	award_id INTEGER NOT NULL,
 	mpr_id INTEGER NOT NULL,
 	stage_id INTEGER NOT NULL,
 	won_in DATE NOT NULL,
-	UNIQUE KEY (award_id, mpr_id, stage_id),
+	PRIMARY KEY (award_id, mpr_id, stage_id),
 	FOREIGN KEY (award_id) REFERENCES Award(id) ON DELETE CASCADE,
 	FOREIGN KEY (mpr_id) REFERENCES Movie_person_role(id) ON DELETE CASCADE,
 	FOREIGN KEY (stage_id) REFERENCES Stage(id) ON DELETE CASCADE,
 );
 
 CREATE TABLE Genre_movie(
-	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	genre_id INTEGER NOT NULL,
 	movie_id INTEGER NOT NULL,
-	UNIQUE KEY (genre_id, movie_id),
+	PRIMARY KEY (genre_id, movie_id),
 	FOREIGN KEY (genre_id) REFERENCES Genre(id) ON DELETE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
 );

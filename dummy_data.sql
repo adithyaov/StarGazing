@@ -1,7 +1,3 @@
-DROP TABLE IF EXISTS Award_mpr_stage;
-DROP TABLE IF EXISTS Movie_person_role;
-DROP TABLE IF EXISTS Genre_movie;
-
 INSERT INTO Award (id, award_name, award_description) VALUES
 	(1, 'Best Actor', 'Award for being the best!'),
 	(2, 'Best Actress', 'Award for being the best!'),
@@ -114,4 +110,41 @@ INSERT INTO Comment_user (movie_id, user_id, rating) VALUES
     (1, 2, 1),
     (2, 3, 1),
     (3, 4, 2);
+
+
+INSERT INTO Genre_movie (id, person_id, role_id, movie_id) VALUES
+    (1, 1, 1, 1),
+    (2, 2, 2, 2),
+    (3, 3, 3, 3),
+    (4, 4, 4, 4),
+    (5, 5, 5, 5),
+    (6, 6, 6, 6),
+    (7, 1, 6, 2),
+    (8, 2, 5, 3),
+    (9, 3, 4, 4),
+    (10, 4, 3, 5),
+    (11, 5, 2, 6),
+    (12, 6, 1, 3),
+    (13, 1, 2, 4),
+    (14, 2, 3, 5),
+    (15, 3, 5, 6);
+
+
+INSERT INTO Award_mpr_stage (award_id, mpr_id, stage_id) VALUES
+    (1, 1, 1),
+    (2, 2, 2),
+    (3, 3, 3),
+    (4, 4, 4),
+    (5, 5, 5),
+    (6, 6, 2),
+    (7, 7, 3),
+    (1, 8, 4),
+    (2, 9, 5),
+    (3, 10, 3),
+    (4, 11, 4),
+    (5, 12, 5),
+    (6, 12, 4),
+    (7, 13, 5),
+    (1, 14, 5),
+    (2, 15, 1);
 
