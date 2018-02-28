@@ -18,14 +18,12 @@ CREATE TABLE Person(
 	last_name VARCHAR(32) NOT NULL,
 	dob DATE,
 	bio TEXT,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Role(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	role_title VARCHAR(32) NOT NULL,
 	role_description TEXT,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE User(
@@ -34,7 +32,6 @@ CREATE TABLE User(
 	email VARCHAR(128) UNIQUE NOT NULL,
 	password_hash VARCHAR(64),
 	dob DATE,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Movie(
@@ -43,7 +40,6 @@ CREATE TABLE Movie(
 	release_date DATE,
 	age_rating INTEGER,
 	avg_rating FLOAT,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Comment(
@@ -63,21 +59,18 @@ CREATE TABLE Genre(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	genre_name VARCHAR(32) UNIQUE NOT NULL,
 	genre_description TEXT,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Award(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	award_name VARCHAR(32) UNIQUE NOT NULL,
 	award_description TEXT,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Stage(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	stage_name VARCHAR(32) UNIQUE NOT NULL,
 	stage_description TEXT,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 
@@ -90,7 +83,6 @@ CREATE TABLE Movie_person_role(
 	FOREIGN KEY (person_id) REFERENCES Person(id) ON DELETE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
 	FOREIGN KEY (role_id) REFERENCES Role(id) ON DELETE SET NULL,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Award_mpr_stage(
@@ -103,7 +95,6 @@ CREATE TABLE Award_mpr_stage(
 	FOREIGN KEY (award_id) REFERENCES Award(id) ON DELETE CASCADE,
 	FOREIGN KEY (mpr_id) REFERENCES Movie_person_role(id) ON DELETE CASCADE,
 	FOREIGN KEY (stage_id) REFERENCES Stage(id) ON DELETE CASCADE,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Genre_movie(
@@ -113,7 +104,6 @@ CREATE TABLE Genre_movie(
 	UNIQUE KEY (genre_id, movie_id),
 	FOREIGN KEY (genre_id) REFERENCES Genre(id) ON DELETE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Movie_user(
@@ -123,7 +113,6 @@ CREATE TABLE Movie_user(
 	PRIMARY KEY (movie_id, user_id),
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Comment_user(
@@ -133,5 +122,4 @@ CREATE TABLE Comment_user(
 	PRIMARY KEY (comment_id, user_id),
 	FOREIGN KEY (comment_id) REFERENCES Comment(id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
-	flag BOOLEAN NOT NULL DEFAULT 0
 );

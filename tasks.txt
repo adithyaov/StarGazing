@@ -1,0 +1,14 @@
+triggers:-
+-> After insert in movie insert in genre with NA. - canceled
+-> if stage is deleted corrsponding awards should be deleted.
+-> User having age less that age rating of movie should not be allowed to rate that movie.(we dont currently have age as attribute for user).
+
+
+procedures and functions:-
+-> A procedure to take backup of database regurarly.
+-> User having age less that age rating of movie should not be allowed to rate that movie.(we dont currently have age as attribute for user).
+-> A Procedure to check the entire consistency of the Database.
+-> A Procedure to archive comments of a specific year
+
+Other
+-> Improve ER Diagram
