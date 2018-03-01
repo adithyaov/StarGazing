@@ -6,6 +6,14 @@ BEGIN
 END//
 DELIMITER ;
 
+DROP PROCEDURE avg_ratings_of_movie;
+DELIMITER //
+CREATE PROCEDURE avg_ratings_of_movie(IN m_id INT)
+BEGIN
+    SELECT rating FROM Movie_user WHERE movie_id = m_id;
+END//
+DELIMITER ;
+
 DROP PROCEDURE avg_ratings_of_person;
 DELIMITER //
 CREATE PROCEDURE avg_ratings_of_person(IN person_id INT)

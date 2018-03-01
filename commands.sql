@@ -17,13 +17,13 @@ CREATE TABLE Person(
 	first_name VARCHAR(32) NOT NULL,
 	last_name VARCHAR(32) NOT NULL,
 	dob DATE,
-	bio TEXT,
+	bio TEXT
 );
 
 CREATE TABLE Role(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	role_title VARCHAR(32) NOT NULL,
-	role_description TEXT,
+	role_description TEXT
 );
 
 CREATE TABLE User(
@@ -31,7 +31,7 @@ CREATE TABLE User(
 	name VARCHAR(32) NOT NULL,
 	email VARCHAR(128) UNIQUE NOT NULL,
 	password_hash VARCHAR(64),
-	dob DATE,
+	dob DATE
 );
 
 CREATE TABLE Movie(
@@ -39,7 +39,7 @@ CREATE TABLE Movie(
 	movie_title VARCHAR(128),
 	release_date DATE,
 	age_rating INTEGER,
-	avg_rating FLOAT DEFAULT 0.0,
+	avg_rating FLOAT DEFAULT 0.0
 );
 
 CREATE TABLE Comment(
@@ -51,25 +51,25 @@ CREATE TABLE Comment(
 	movie_id INTEGER NOT NULL,
 	user_id INTEGER,
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE SET NULL,
+	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE SET NULL
 );
 
 CREATE TABLE Genre(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	genre_name VARCHAR(32) UNIQUE NOT NULL,
-	genre_description TEXT,
+	genre_description TEXT
 );
 
 CREATE TABLE Award(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	award_name VARCHAR(32) UNIQUE NOT NULL,
-	award_description TEXT,
+	award_description TEXT
 );
 
 CREATE TABLE Stage(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	stage_name VARCHAR(32) UNIQUE NOT NULL,
-	stage_description TEXT,
+	stage_description TEXT
 );
 
 
@@ -81,7 +81,7 @@ CREATE TABLE Movie_person_role(
 	UNIQUE KEY (person_id, role_id, movie_id),
 	FOREIGN KEY (person_id) REFERENCES Person(id) ON DELETE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
-	FOREIGN KEY (role_id) REFERENCES Role(id) ON DELETE SET NULL,
+	FOREIGN KEY (role_id) REFERENCES Role(id) ON DELETE SET NULL
 );
 
 CREATE TABLE Award_mpr_stage(
@@ -92,7 +92,7 @@ CREATE TABLE Award_mpr_stage(
 	PRIMARY KEY (award_id, mpr_id, stage_id),
 	FOREIGN KEY (award_id) REFERENCES Award(id) ON DELETE CASCADE,
 	FOREIGN KEY (mpr_id) REFERENCES Movie_person_role(id) ON DELETE CASCADE,
-	FOREIGN KEY (stage_id) REFERENCES Stage(id) ON DELETE CASCADE,
+	FOREIGN KEY (stage_id) REFERENCES Stage(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Genre_movie(
@@ -100,7 +100,7 @@ CREATE TABLE Genre_movie(
 	movie_id INTEGER NOT NULL,
 	PRIMARY KEY (genre_id, movie_id),
 	FOREIGN KEY (genre_id) REFERENCES Genre(id) ON DELETE CASCADE,
-	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
+	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Movie_user(
@@ -109,7 +109,7 @@ CREATE TABLE Movie_user(
 	rating INTEGER NOT NULL CHECK(rating <= 5 && rating >= 0),
 	PRIMARY KEY (movie_id, user_id),
 	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Comment_user(
@@ -118,5 +118,5 @@ CREATE TABLE Comment_user(
 	vote ENUM('up', 'down'),
 	PRIMARY KEY (comment_id, user_id),
 	FOREIGN KEY (comment_id) REFERENCES Comment(id) ON DELETE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
