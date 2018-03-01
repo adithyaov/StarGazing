@@ -135,137 +135,207 @@ grant delete on stargazing.Award_mpr_stage to 'b_award_mpr_stage_delete';
 
 create role 'm_admin';
 -- Has everything
-grant * on stargazing.* to 'm_admin';
+grant all privileges on stargazing.* to 'm_admin';
 
 create role 'm_content_editor';
 -- Has create, update, delete on Person Movie Genre Role Award Stage Movie_person_role Genre_movie Award_mpr_stage
-grant
-    'b_person_insert',
-    'b_person_update',
-    'b_person_delete',
-    'b_movie_insert',
-    'b_movie_update',
-    'b_movie_delete',
-    'b_genre_insert',
-    'b_genre_update',
-    'b_genre_delete',
-    'b_role_insert',
-    'b_role_update',
-    'b_role_delete',
-    'b_award_insert',
-    'b_award_update',
-    'b_award_delete',
-    'b_stage_insert',
-    'b_stage_update',
-    'b_stage_delete',
-    'b_movie_person_role_insert',
-    'b_movie_person_role_update',
-    'b_movie_person_role_delete',
-    'b_genre_movie_insert',
-    'b_genre_movie_update',
-    'b_genre_movie_delete',
-    'b_award_mpr_stage_insert',
-    'b_award_mpr_stage_update',
-    'b_award_mpr_stage_delete' to 'm_content_editor';
+
+grant 'b_person_insert' to 'm_content_editor';
+grant 'b_person_update' to 'm_content_editor';
+grant 'b_person_delete' to 'm_content_editor';
+grant 'b_movie_insert' to 'm_content_editor';
+grant 'b_movie_update' to 'm_content_editor';
+grant 'b_movie_delete' to 'm_content_editor';
+grant 'b_genre_insert' to 'm_content_editor';
+grant 'b_genre_update' to 'm_content_editor';
+grant 'b_genre_delete' to 'm_content_editor';
+grant 'b_role_insert' to 'm_content_editor';
+grant 'b_role_update' to 'm_content_editor';
+grant 'b_role_delete' to 'm_content_editor';
+grant 'b_award_insert' to 'm_content_editor';
+grant 'b_award_update' to 'm_content_editor';
+grant 'b_award_delete' to 'm_content_editor';
+grant 'b_stage_insert' to 'm_content_editor';
+grant 'b_stage_update' to 'm_content_editor';
+grant 'b_stage_delete' to 'm_content_editor';
+grant 'b_movie_person_role_insert' to 'm_content_editor';
+grant 'b_movie_person_role_update' to 'm_content_editor';
+grant 'b_movie_person_role_delete' to 'm_content_editor';
+grant 'b_genre_movie_insert' to 'm_content_editor';
+grant 'b_genre_movie_update' to 'm_content_editor';
+grant 'b_genre_movie_delete' to 'm_content_editor';
+grant 'b_award_mpr_stage_insert' to 'm_content_editor';
+grant 'b_award_mpr_stage_update' to 'm_content_editor';
+grant 'b_award_mpr_stage_delete' to 'm_content_editor';
 
 
 create role 'm_movie_editor';
 -- Has create, update, delete on Movie Genre Genre_movie
-grant
-    'b_movie_insert',
-    'b_movie_update',
-    'b_movie_delete',
-    'b_genre_insert',
-    'b_genre_update',
-    'b_genre_delete',
-    'b_genre_movie_insert',
-    'b_genre_movie_update',
-    'b_genre_movie_delete' to 'm_movie_editor';
+
+grant 'b_movie_insert' to 'm_movie_editor';
+grant 'b_movie_update' to 'm_movie_editor';
+grant 'b_movie_delete' to 'm_movie_editor';
+grant 'b_genre_insert' to 'm_movie_editor';
+grant 'b_genre_update' to 'm_movie_editor';
+grant 'b_genre_delete' to 'm_movie_editor';
+grant 'b_genre_movie_insert' to 'm_movie_editor';
+grant 'b_genre_movie_update' to 'm_movie_editor';
+grant 'b_genre_movie_delete' to 'm_movie_editor';
 
 create role 'm_cast_editor';
 -- Has create, update, delete on Person Role Movie_person_role
-grant
-    'b_person_insert',
-    'b_person_update',
-    'b_person_delete',
-    'b_role_insert',
-    'b_role_update',
-    'b_role_delete',
-    'b_movie_person_role_insert',
-    'b_movie_person_role_update',
-    'b_movie_person_role_delete' to 'm_cast_editor';
+
+grant 'b_person_insert' to 'm_cast_editor';
+grant 'b_person_update' to 'm_cast_editor';
+grant 'b_person_delete' to 'm_cast_editor';
+grant 'b_role_insert' to 'm_cast_editor';
+grant 'b_role_update' to 'm_cast_editor';
+grant 'b_role_delete' to 'm_cast_editor';
+grant 'b_movie_person_role_insert' to 'm_cast_editor';
+grant 'b_movie_person_role_update' to 'm_cast_editor';
+grant 'b_movie_person_role_delete' to 'm_cast_editor';
 
 
 create role 'm_award_editor';
 -- Has create, update, delete on Award Stage Award_mpr_stage
-grant
-    'b_award_insert',
-    'b_award_update',
-    'b_award_delete',
-    'b_stage_insert',
-    'b_stage_update',
-    'b_stage_delete',
-    'b_award_mpr_stage_insert',
-    'b_award_mpr_stage_update',
-    'b_award_mpr_stage_delete' to 'm_award_editor';
+
+grant 'b_award_insert' to 'm_award_editor';
+grant 'b_award_update' to 'm_award_editor';
+grant 'b_award_delete' to 'm_award_editor';
+grant 'b_stage_insert' to 'm_award_editor';
+grant 'b_stage_update' to 'm_award_editor';
+grant 'b_stage_delete' to 'm_award_editor';
+grant 'b_award_mpr_stage_insert' to 'm_award_editor';
+grant 'b_award_mpr_stage_update' to 'm_award_editor';
+grant 'b_award_mpr_stage_delete' to 'm_award_editor';
 
 create role 'm_user_content_manager';
 -- Has update, delete on Comment
 -- Has delete on Comment_user
-grant
-    'b_comment_delete',
-    'b_comment_update',
-    'b_comment_user_delete' to 'm_content_editor';
+
+grant 'b_comment_delete' to 'm_content_editor';
+grant 'b_comment_update' to 'm_content_editor';
+grant 'b_comment_user_delete' to 'm_content_editor';
 
 create role 'm_consistency_checker';
 -- Has create, update, delete on Award_mpr_stage Movie_person_role Genre_movie
 -- Has delete on Comment_user Movie_user
-grant
-    'b_movie_person_role_insert',
-    'b_movie_person_role_update',
-    'b_movie_person_role_delete',
-    'b_genre_movie_insert',
-    'b_genre_movie_update',
-    'b_genre_movie_delete',
-    'b_award_mpr_stage_insert',
-    'b_award_mpr_stage_update',
-    'b_award_mpr_stage_delete',
-    'b_comment_user_delete',
-    'b_movie_user_delete' to 'm_consistency_checker';
+
+grant 'b_movie_person_role_insert' to 'm_consistency_checker';
+grant 'b_movie_person_role_update' to 'm_consistency_checker';
+grant 'b_movie_person_role_delete' to 'm_consistency_checker';
+grant 'b_genre_movie_insert' to 'm_consistency_checker';
+grant 'b_genre_movie_update' to 'm_consistency_checker';
+grant 'b_genre_movie_delete' to 'm_consistency_checker';
+grant 'b_award_mpr_stage_insert' to 'm_consistency_checker';
+grant 'b_award_mpr_stage_update' to 'm_consistency_checker';
+grant 'b_award_mpr_stage_delete' to 'm_consistency_checker';
+grant 'b_comment_user_delete' to 'm_consistency_checker';
+grant 'b_movie_user_delete' to 'm_consistency_checker';
 
 create role 'm_client_help';
 -- Has select, update, delete on User
 -- Has delete on Movie_user Comment_user
-grant
-    'b_user_select',
-    'b_user_update',
-    'b_user_delete',
-    'b_movie_user_delete',
-    'b_comment_user_delete' to 'm_client_help';
+
+grant 'b_user_select' to 'm_client_help';
+grant 'b_user_update' to 'm_client_help';
+grant 'b_user_delete' to 'm_client_help';
+grant 'b_movie_user_delete' to 'm_client_help';
+grant 'b_comment_user_delete' to 'm_client_help';
 
 -- grants for select can select * except user
 
-grant
-    'b_person_select',
-    'b_role_select',
-    'b_stage_select',
-    'b_award_select',
-    'b_genre_select',
-    'b_movie_select',
-    'b_comment_select',
-    'b_comment_user_select',
-    'b_movie_user_select',
-    'b_genre_movie_select',
-    'b_movie_person_role_select',
-    'b_award_mpr_stage_select'
-to 
-    'm_content_editor', 
-    'm_movie_editor',
-    'm_cast_editor',
-    'm_award_editor',
-    'm_user_content_manager',
-    'm_consistency_checker',
-    'm_client_help';
+grant 'b_person_select' to 'm_content_editor';
+grant 'b_role_select' to 'm_content_editor';
+grant 'b_stage_select' to 'm_content_editor';
+grant 'b_award_select' to 'm_content_editor';
+grant 'b_genre_select' to 'm_content_editor';
+grant 'b_movie_select' to 'm_content_editor';
+grant 'b_comment_select' to 'm_content_editor';
+grant 'b_comment_user_select' to 'm_content_editor';
+grant 'b_movie_user_select' to 'm_content_editor';
+grant 'b_genre_movie_select' to 'm_content_editor';
+grant 'b_movie_person_role_select' to 'm_content_editor';
+grant 'b_award_mpr_stage_select' to 'm_content_editor';
+
+grant 'b_person_select' to 'm_movie_editor';
+grant 'b_role_select' to 'm_movie_editor';
+grant 'b_stage_select' to 'm_movie_editor';
+grant 'b_award_select' to 'm_movie_editor';
+grant 'b_genre_select' to 'm_movie_editor';
+grant 'b_movie_select' to 'm_movie_editor';
+grant 'b_comment_select' to 'm_movie_editor';
+grant 'b_comment_user_select' to 'm_movie_editor';
+grant 'b_movie_user_select' to 'm_movie_editor';
+grant 'b_genre_movie_select' to 'm_movie_editor';
+grant 'b_movie_person_role_select' to 'm_movie_editor';
+grant 'b_award_mpr_stage_select' to 'm_movie_editor';
+
+grant 'b_person_select' to 'm_cast_editor';
+grant 'b_role_select' to 'm_cast_editor';
+grant 'b_stage_select' to 'm_cast_editor';
+grant 'b_award_select' to 'm_cast_editor';
+grant 'b_genre_select' to 'm_cast_editor';
+grant 'b_movie_select' to 'm_cast_editor';
+grant 'b_comment_select' to 'm_cast_editor';
+grant 'b_comment_user_select' to 'm_cast_editor';
+grant 'b_movie_user_select' to 'm_cast_editor';
+grant 'b_genre_movie_select' to 'm_cast_editor';
+grant 'b_movie_person_role_select' to 'm_cast_editor';
+grant 'b_award_mpr_stage_select' to 'm_cast_editor';
+
+grant 'b_person_select' to 'm_award_editor';
+grant 'b_role_select' to 'm_award_editor';
+grant 'b_stage_select' to 'm_award_editor';
+grant 'b_award_select' to 'm_award_editor';
+grant 'b_genre_select' to 'm_award_editor';
+grant 'b_movie_select' to 'm_award_editor';
+grant 'b_comment_select' to 'm_award_editor';
+grant 'b_comment_user_select' to 'm_award_editor';
+grant 'b_movie_user_select' to 'm_award_editor';
+grant 'b_genre_movie_select' to 'm_award_editor';
+grant 'b_movie_person_role_select' to 'm_award_editor';
+grant 'b_award_mpr_stage_select' to 'm_award_editor';
+
+grant 'b_person_select' to 'm_user_content_manager';
+grant 'b_role_select' to 'm_user_content_manager';
+grant 'b_stage_select' to 'm_user_content_manager';
+grant 'b_award_select' to 'm_user_content_manager';
+grant 'b_genre_select' to 'm_user_content_manager';
+grant 'b_movie_select' to 'm_user_content_manager';
+grant 'b_comment_select' to 'm_user_content_manager';
+grant 'b_comment_user_select' to 'm_user_content_manager';
+grant 'b_movie_user_select' to 'm_user_content_manager';
+grant 'b_genre_movie_select' to 'm_user_content_manager';
+grant 'b_movie_person_role_select' to 'm_user_content_manager';
+grant 'b_award_mpr_stage_select' to 'm_user_content_manager';
+
+grant 'b_person_select' to 'm_consistency_checker';
+grant 'b_role_select' to 'm_consistency_checker';
+grant 'b_stage_select' to 'm_consistency_checker';
+grant 'b_award_select' to 'm_consistency_checker';
+grant 'b_genre_select' to 'm_consistency_checker';
+grant 'b_movie_select' to 'm_consistency_checker';
+grant 'b_comment_select' to 'm_consistency_checker';
+grant 'b_comment_user_select' to 'm_consistency_checker';
+grant 'b_movie_user_select' to 'm_consistency_checker';
+grant 'b_genre_movie_select' to 'm_consistency_checker';
+grant 'b_movie_person_role_select' to 'm_consistency_checker';
+grant 'b_award_mpr_stage_select' to 'm_consistency_checker';
+
+grant 'b_person_select' to 'm_client_help';
+grant 'b_role_select' to 'm_client_help';
+grant 'b_stage_select' to 'm_client_help';
+grant 'b_award_select' to 'm_client_help';
+grant 'b_genre_select' to 'm_client_help';
+grant 'b_movie_select' to 'm_client_help';
+grant 'b_comment_select' to 'm_client_help';
+grant 'b_comment_user_select' to 'm_client_help';
+grant 'b_movie_user_select' to 'm_client_help';
+grant 'b_genre_movie_select' to 'm_client_help';
+grant 'b_movie_person_role_select' to 'm_client_help';
+grant 'b_award_mpr_stage_select' to 'm_client_help';
+
 
 
 
