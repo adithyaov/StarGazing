@@ -1,9 +1,9 @@
 DELIMITER //
-CREATE TRIGGER t_update_movie_ratings_i 
+CREATE TRIGGER t_update_movie_ratings_i
 AFTER INSERT ON Movie_user 
 FOR EACH ROW 
 BEGIN 
-    UPDATE Movie as M
+    UPDATE Movie M
     SET M.avg_rating = f_calc_avg_rating(new.movie_id)
     WHERE M.id = new.movie_id;
 END//
@@ -98,7 +98,7 @@ END//
 DELIMITER ;
 
 DELIMITER //
-CREATE TRIGGER t_change_comment_content
+CREATE TRIGGER t_change_movie_content
 AFTER UPDATE ON Movie 
 FOR EACH ROW 
 BEGIN
