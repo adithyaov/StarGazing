@@ -23,12 +23,10 @@ helpers
 '''
 
 def deny_response(arg):
-	if arg['resource_req'] in arg['valid_resources']:
-		return True
-	else:
-		return False
+	return False
 
 def build_query(arg):
+	selection = arg['selection']
 	main_tbl = arg['main_tbl']
 	join_tbls = arg['join_tbls']
 	criteria = arg['criteria']
@@ -47,7 +45,10 @@ def build_query(arg):
 	'''
 	init query
 	'''
-	query_list.append('select * from {main_tbl} as {main_tbl}'.format(main_tbl=main_tbl))
+	query_list.append(
+		'select {selection} from {main_tbl} as {main_tbl}'
+		.format(main_tbl=main_tbl, selection=selection)
+	)
 
 	'''
 	include joins
@@ -61,14 +62,17 @@ def build_query(arg):
 	'''
 	where
 	'''
-	query_list.append('where')
+	if len(criteria) > 0:
+		query_list.append('where')
 	for (table, column, equality, value) in criteria:
 		query_list.append('{}.{} {} {}'.format(table, column, equality, value))
+		query_list.append('and')
 
-	print query_list
+	return ' '.join(query_list[:-1])
 
 
-build_query({
+print build_query({
+	'selection': '*',
 	'main_tbl': 'Movie',
 	'join_tbls': [
 		('inner', ('Person', 'id'), ('Truck', 'person_id'))
@@ -85,13 +89,86 @@ build_query({
 main
 '''
 
-def get_movies(arg):
+def best_movies(arg):
 	if deny_response(arg):
 		return ('401',)
 	
+	query = build_query({
+		'selection': '*',
+		'main_tbl': 'Movie',
+		'join_tbls': [],
+		'criteria': [
+			('Movie', 'avg_rating', '>=', 4)
+		]
+	}) + ' order by avg_rating desc limit 15'
 
+	print query
 
-	'''
-		do something
-	'''
 	return ('200',)
+
+def one_movie(arg):
+	if deny_response(arg):
+		return ('401',)
+	
+	id = str(arg['id'])
+
+	selection = [
+		'Movie.*',
+		'Person.id', 'Person.first_name', 'Person.last_name',
+		'Role.id', 'Role.title'
+	]
+
+	query = build_query({
+		'selection': 'distinct ' + ', '.join(selection),
+		'main_tbl': 'Movie',
+		'join_tbls': [
+			('inner', ('Movie_person_role', 'movie_id'), ('Movie', 'id')),
+			('inner', ('Person', 'id'), ('Movie_person_role', 'person_id')),
+			('inner', ('Role', 'id'), ('Movie_person_role', 'role_id'))
+		],
+		'criteria': [
+			('Movie', 'id', '=', id)
+		]
+	})
+
+	print query
+
+	return ('200',)
+
+
+def simple_search(arg):
+	if deny_response(arg):
+		return ('401',)
+	
+	search = str(arg['search'])
+
+	query = build_query({
+		'selection': '*',
+		'main_tbl': 'Movie',
+		'join_tbls': [],
+		'criteria': [
+			('Movie', 'title', 'like', '\'%{}%\''.format(search))
+		]
+	}) + ' order by avg_rating desc limit 15'
+
+	print query
+
+	return ('200',)
+
+
+best_movies({
+	'resource_req': 'best_movies',
+	'requestor': 'admin'
+})
+
+one_movie({
+	'resource_req': 'best_movies',
+	'requestor': 'admin',
+	'id': 2
+})
+
+simple_search({
+	'resource_req': 'best_movies',
+	'requestor': 'admin',
+	'search': 'iron man'
+})
