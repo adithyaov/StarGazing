@@ -25,6 +25,22 @@ helpers
 def deny_response(arg):
 	return False
 
+def recurse_criteria(criteria, query_list):
+	new_list = query_list
+	if type(criteria) == type([]):
+		criteria = ('and', criteria)
+	for x in criteria[1]:
+		if len(x) == 2:
+			new_list.append('(')
+			new_list.append(recurse_criteria(x, []))
+			new_list.append(')')
+		else:
+			(table, column, equality, value) = x
+			new_list.append('{}.{} {} {}'.format(table, column, equality, value))
+		new_list.append(criteria[0])
+	return new_list[:-1]
+
+
 def build_query(arg):
 	selection = arg['selection']
 	main_tbl = arg['main_tbl']
@@ -64,24 +80,11 @@ def build_query(arg):
 	'''
 	if len(criteria) > 0:
 		query_list.append('where')
-	for (table, column, equality, value) in criteria:
-		query_list.append('{}.{} {} {}'.format(table, column, equality, value))
-		query_list.append('and')
+	query_list = query_list + recurse_criteria(criteria, [])
 
-	return ' '.join(query_list[:-1])
+	return ' '.join(query_list)
 
 
-print build_query({
-	'selection': '*',
-	'main_tbl': 'Movie',
-	'join_tbls': [
-		('inner', ('Person', 'id'), ('Truck', 'person_id'))
-	],
-	'criteria': [
-		('Person', 'id', '>=', '200'),
-		('Person', 'name', '==', '\'Adithya Kumar\'')
-	]
-})
 
 
 
@@ -160,7 +163,7 @@ def one_movie(arg):
 	return ('200',)
 
 
-def simple_search(arg):
+def simple_movie_search(arg):
 	if deny_response(arg):
 		return ('401',)
 	
@@ -174,6 +177,26 @@ def simple_search(arg):
 			('Movie', 'title', 'like', '\'%{}%\''.format(search))
 		]
 	}) + ' order by avg_rating desc limit 15'
+
+	print query
+
+	return ('200',)
+
+def simple_person_search(arg):
+	if deny_response(arg):
+		return ('401',)
+	
+	search = str(arg['search'])
+
+	query = build_query({
+		'selection': '*',
+		'main_tbl': 'Person',
+		'join_tbls': [],
+		'criteria': ('or', [
+					('Person', 'first_name', 'like', '\'%{}%\''.format(search)),
+					('Person', 'last_name', 'like', '\'%{}%\''.format(search))
+				])
+	}) + ' limit 15'
 
 	print query
 
@@ -199,7 +222,13 @@ one_movie({
 	'id': 2
 })
 
-simple_search({
+simple_movie_search({
+	'resource_req': 'best_movies',
+	'requestor': 'admin',
+	'search': 'iron man'
+})
+
+simple_person_search({
 	'resource_req': 'best_movies',
 	'requestor': 'admin',
 	'search': 'iron man'
