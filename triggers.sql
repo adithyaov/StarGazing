@@ -4,7 +4,7 @@ AFTER INSERT ON Movie_user
 FOR EACH ROW 
 BEGIN 
     UPDATE Movie M
-    SET M.avg_rating = f_calc_avg_rating(new.movie_id)
+    SET M.avg_rating = f_avg_ratings_of_movie(new.movie_id)
     WHERE M.id = new.movie_id;
 END//
 DELIMITER ;
@@ -32,7 +32,7 @@ AFTER UPDATE ON Movie_user
 FOR EACH ROW 
 BEGIN
     UPDATE Movie M
-    SET M.avg_rating = f_calc_avg_rating(new.movie_id)
+    SET M.avg_rating = f_avg_ratings_of_movie(new.movie_id)
     WHERE M.id = new.movie_id;
 END//
 DELIMITER ;
@@ -61,7 +61,7 @@ AFTER DELETE ON Movie_user
 FOR EACH ROW 
 BEGIN
     UPDATE Movie M
-    SET M.avg_rating = f_calc_avg_rating(old.movie_id)
+    SET M.avg_rating = f_avg_ratings_of_movie(old.movie_id)
     WHERE M.id = old.movie_id;
 END//
 DELIMITER ;
@@ -89,10 +89,8 @@ AFTER UPDATE ON Comment
 FOR EACH ROW 
 BEGIN
     IF NEW.content <> OLD.content THEN
-        UPDATE Comment C
-        SET C.upvotes = 0, C.downvotes = 0,
-            C.dateposted = CURRENT_DATE
-        WHERE C.id = new.id;
+        INSERT INTO Vote_consistancy (change_id, from_table)
+            VALUES (new.id, 'Comment');
     END IF;
 END//
 DELIMITER ;
@@ -103,9 +101,8 @@ AFTER UPDATE ON Movie
 FOR EACH ROW 
 BEGIN
     IF NEW.movie_title <> OLD.movie_title THEN
-        UPDATE Movie M
-        SET M.avg_rating = 0
-        WHERE M.id = new.id;
+        INSERT INTO Vote_consistancy (change_id, from_table)
+            VALUES (new.id, 'Movie');
     END IF;
 END//
 DELIMITER ;

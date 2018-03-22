@@ -120,3 +120,10 @@ CREATE TABLE Comment_user(
 	FOREIGN KEY (comment_id) REFERENCES Comment(id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
+
+
+CREATE TABLE Vote_consistancy(
+	change_id INTEGER NOT NULL,
+	from_table ENUM('Movie', 'Comment') NOT NULL,
+	PRIMARY KEY (change_id, from_table)
+);

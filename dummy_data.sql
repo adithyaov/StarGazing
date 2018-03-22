@@ -1,81 +1,81 @@
 INSERT INTO Award (id, award_name, award_description) VALUES
-	(1, 'Best Actor', 'Award for being the best!'),
-	(2, 'Best Actress', 'Award for being the best!'),
-	(3, 'Best Debut Actor', 'Award for being the best!'),
-	(4, 'Best Anatagonist', 'Award for being the best!'),
-	(5, 'Best Supporting Role (Male)', 'Award for being the best!'),
-	(6, 'Best Supporting Role (Female)', 'Award for being the best!'),
-	(7, 'Best Director', 'Award for being the best!');
+    (1, 'Best Actor', 'Award for being the best!'),
+    (2, 'Best Actress', 'Award for being the best!'),
+    (3, 'Best Debut Actor', 'Award for being the best!'),
+    (4, 'Best Anatagonist', 'Award for being the best!'),
+    (5, 'Best Supporting Role (Male)', 'Award for being the best!'),
+    (6, 'Best Supporting Role (Female)', 'Award for being the best!'),
+    (7, 'Best Director', 'Award for being the best!');
 
 INSERT INTO Movie (id, movie_title, release_date, age_rating) VALUES
-	(1, 'The Matrix', '1999-12-04', 18),
-	(2, 'The Matrix II', '2333-12-04', 21),
-	(3, 'The God Father', '3222-12-04', 25),
-	(4, 'Awe', '3333-12-04', 18),
-	(5, 'Inception', '1112-12-04', 16),
-	(6, 'Toy Story', '2222-12-04', 12);
+    (1, 'The Matrix', '1999-12-04', 18),
+    (2, 'The Matrix II', '2333-12-04', 21),
+    (3, 'The God Father', '3222-12-04', 25),
+    (4, 'Awe', '3333-12-04', 18),
+    (5, 'Inception', '1112-12-04', 16),
+    (6, 'Toy Story', '2222-12-04', 12);
 
 INSERT INTO Genre (id, genre_name, genre_description) VALUES
-	(1, 'Sci-fi', 'Unreal!'),
-	(2, 'Action', 'Go Jackie!'),
-	(3, 'Drama', 'Chobey'),
-	(4, 'Kids', 'Innocent angels'),
-	(5, 'Spice of Life', '3-gatsu no is the best');
+    (1, 'Sci-fi', 'Unreal!'),
+    (2, 'Action', 'Go Jackie!'),
+    (3, 'Drama', 'Chobey'),
+    (4, 'Kids', 'Innocent angels'),
+    (5, 'Spice of Life', '3-gatsu no is the best');
 
 INSERT INTO Stage (id, stage_name, stage_description) VALUES
-	(1, 'Oscar', 'Cool!'),
-	(2, 'IIFA', 'Lame!'),
-	(3, 'FIFA', 'What is this doing here?'),
-	(4, 'LIFA', 'huh? Im an idiot'),
-	(5, 'Worst awards ever', 'I like this!');
+    (1, 'Oscar', 'Cool!'),
+    (2, 'IIFA', 'Lame!'),
+    (3, 'FIFA', 'What is this doing here?'),
+    (4, 'LIFA', 'huh? Im an idiot'),
+    (5, 'Worst awards ever', 'I like this!');
 
 INSERT INTO Role (id, role_title, role_description) VALUES
-	(1, 'Actor', 'The hero!'),
-	(2, 'Actress', 'The hot girl'),
-	(3, 'Maid', 'The other hot girl?'),
-	(4, 'Side Character 1', 'GAY!'),
-	(5, 'Black Dude', 'dies first'),
-	(6, 'Antagonist', 'Awesome guy');
+    (1, 'Actor', 'The hero!'),
+    (2, 'Actress', 'The hot girl'),
+    (3, 'Maid', 'The other hot girl?'),
+    (4, 'Side Character 1', 'GAY!'),
+    (5, 'Black Dude', 'dies first'),
+    (6, 'Antagonist', 'Awesome guy');
 
 INSERT INTO Person (id, first_name, last_name, dob, bio) VALUES
-	(1, 'Keanue', 'Reeves', '1965-03-04', 'No bio yet :-('),
-	(2, 'Tom', 'Cruise', '1962-10-10', 'No bio yet :-('),
-	(3, 'Gaikwad', 'Shivaji', '1935-03-05', 'No bio yet :-('),
-	(4, 'Leo', 'Decaprio', '1235-01-06', 'No bio yet :-('),
-	(5, 'Robert de', 'Nero', '1455-06-04', 'No bio yet :-('),
-	(6, 'Buzz', 'Lighter', '1966-05-08', 'No bio yet :-(');
+    (1, 'Keanue', 'Reeves', '1965-03-04', 'No bio yet :-('),
+    (2, 'Tom', 'Cruise', '1962-10-10', 'No bio yet :-('),
+    (3, 'Gaikwad', 'Shivaji', '1935-03-05', 'No bio yet :-('),
+    (4, 'Leo', 'Decaprio', '1235-01-06', 'No bio yet :-('),
+    (5, 'Robert de', 'Nero', '1455-06-04', 'No bio yet :-('),
+    (6, 'Buzz', 'Lighter', '1966-05-08', 'No bio yet :-(');
 
 INSERT INTO User (id, name, email, password_hash, dob) VALUES
-	(1, 'kothari', 'k@noob.com', '0000', '1996-02-02'),
-	(2, 'mayank', 'only@ww.com', 'ilovemetha', '1996-08-08'),
-	(3, 'bono', 'true_noob@useless.com', 'noobparanioa', '1999-09-09'),
-	(4, 'chobs', 'paper_guy@ieee.com', 'peacemaker', '1996-01-01');
+    (1, 'kothari', 'k@noob.com', '0000', '1996-02-02'),
+    (2, 'mayank', 'only@ww.com', 'ilovemetha', '1996-08-08'),
+    (3, 'bono', 'true_noob@useless.com', 'noobparanioa', '1999-09-09'),
+    (4, 'chobs', 'paper_guy@ieee.com', 'peacemaker', '1996-01-01');
 
 INSERT INTO Comment (id, content, date_posted, movie_id, user_id) VALUES
-	(1, 
-		'This movie is awesome!', 
-		'2018-01-01',
-		1, 1),
-	(2, 
-		'A good psycological movie!', 
-		'2018-01-01',
-		4, 2),
-	(3, 
-		'Dreams are so complex!', 
-		'2018-01-01',
-		5, 2),
-	(4, 
-		'Old but gold!', 
-		'2018-01-01',
-		3, 3),
-	(5, 
-		'When is Matrix 3 coming out?!', 
-		'2018-01-01',
-		2, 4),
-	(6, 
-		'This touched my heart!', 
-		'2018-01-01',
-		6, 4);
+    (1, 
+        'This movie is awesome!', 
+        '2018-01-01',
+        1, 1),
+    (2, 
+        'A good psycological movie!', 
+        '2018-01-01',
+        4, 2),
+    (3, 
+        'Dreams are so complex!', 
+        '2018-01-01',
+        5, 2),
+    (4, 
+        'Old but gold!', 
+        '2018-01-01',
+        3, 3),
+    (5, 
+        'When is Matrix 3 coming out?!', 
+        '2018-01-01',
+        2, 4),
+    (6, 
+        'This touched my heart!', 
+        '2018-01-01',
+        6, 4);
 
 INSERT INTO Comment_user (comment_id, user_id, vote) VALUES
     (1, 1, 'up'),
@@ -94,7 +94,7 @@ INSERT INTO Comment_user (comment_id, user_id, vote) VALUES
     (2, 3, 'down'),
     (3, 4, 'down');
 
-INSERT INTO Comment_user (movie_id, user_id, rating) VALUES
+INSERT INTO Movie_user (movie_id, user_id, rating) VALUES
     (1, 1, 3),
     (2, 2, 4),
     (3, 3, 5),
@@ -112,7 +112,7 @@ INSERT INTO Comment_user (movie_id, user_id, rating) VALUES
     (3, 4, 2);
 
 
-INSERT INTO Genre_movie (id, person_id, role_id, movie_id) VALUES
+INSERT INTO Movie_person_role (id, person_id, role_id, movie_id) VALUES
     (1, 1, 1, 1),
     (2, 2, 2, 2),
     (3, 3, 3, 3),
@@ -130,21 +130,21 @@ INSERT INTO Genre_movie (id, person_id, role_id, movie_id) VALUES
     (15, 3, 5, 6);
 
 
-INSERT INTO Award_mpr_stage (award_id, mpr_id, stage_id) VALUES
-    (1, 1, 1),
-    (2, 2, 2),
-    (3, 3, 3),
-    (4, 4, 4),
-    (5, 5, 5),
-    (6, 6, 2),
-    (7, 7, 3),
-    (1, 8, 4),
-    (2, 9, 5),
-    (3, 10, 3),
-    (4, 11, 4),
-    (5, 12, 5),
-    (6, 12, 4),
-    (7, 13, 5),
-    (1, 14, 5),
-    (2, 15, 1);
+INSERT INTO Award_mpr_stage (award_id, mpr_id, stage_id, won_in) VALUES
+    (1, 1, 1, '2016-1-1'),
+    (2, 2, 2, '2016-1-1'),
+    (3, 3, 3, '2016-1-1'),
+    (4, 4, 4, '2016-1-1'),
+    (5, 5, 5, '2016-1-1'),
+    (6, 6, 2, '2016-1-1'),
+    (7, 7, 3, '2016-1-1'),
+    (1, 8, 4, '2016-1-1'),
+    (2, 9, 5, '2016-1-1'),
+    (3, 10, 3, '2016-1-1'),
+    (4, 11, 4, '2016-1-1'),
+    (5, 12, 5, '2016-1-1'),
+    (6, 12, 4, '2016-1-1'),
+    (7, 13, 5, '2016-1-1'),
+    (1, 14, 5, '2016-1-1'),
+    (2, 15, 1, '2016-1-1');
 
