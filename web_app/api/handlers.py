@@ -112,26 +112,50 @@ def one_movie(arg):
 	
 	id = str(arg['id'])
 
-	selection = [
-		'Movie.*',
-		'Person.id', 'Person.first_name', 'Person.last_name',
-		'Role.id', 'Role.title'
-	]
+	'''
+	q1 Movie
+	q2 People + Roles
+	q3 Comments
+	'''
 
-	query = build_query({
-		'selection': 'distinct ' + ', '.join(selection),
+
+	q1 = build_query({
+		'selection': '*',
 		'main_tbl': 'Movie',
-		'join_tbls': [
-			('inner', ('Movie_person_role', 'movie_id'), ('Movie', 'id')),
-			('inner', ('Person', 'id'), ('Movie_person_role', 'person_id')),
-			('inner', ('Role', 'id'), ('Movie_person_role', 'role_id'))
-		],
+		'join_tbls': [],
 		'criteria': [
 			('Movie', 'id', '=', id)
 		]
 	})
 
-	print query
+	selection = ', '.join([
+		'Person.id', 'Person.first_name', 'Person.last_name',
+		'Role.id', 'Role.title'
+	])
+	q2 = build_query({
+		'selection': selection,
+		'main_tbl': 'Movie_person_role',
+		'join_tbls': [
+			('inner', ('Person', 'id'), ('Movie_person_role', 'person_id')),
+			('inner', ('Role', 'id'), ('Movie_person_role', 'role_id'))
+		],
+		'criteria': [
+			('Movie_person_role', 'movie_id', '=', id)
+		]
+	})
+
+	q3 = build_query({
+		'selection': '*',
+		'main_tbl': 'Comment',
+		'join_tbls': [],
+		'criteria': [
+			('Comment', 'movie_id', '=', id)
+		]
+	})
+
+	print q1
+	print q2
+	print q3
 
 	return ('200',)
 
@@ -154,6 +178,14 @@ def simple_search(arg):
 	print query
 
 	return ('200',)
+
+
+
+
+
+
+
+
 
 
 best_movies({
