@@ -11,6 +11,9 @@ DROP TABLE IF EXISTS Movie;
 DROP TABLE IF EXISTS Genre;
 DROP TABLE IF EXISTS Award;
 DROP TABLE IF EXISTS Stage;
+DROP TABLE IF EXISTS Movie_edit_history;
+DROP TABLE IF EXISTS Comment_edit_history;
+
 
 CREATE TABLE Person(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -126,4 +129,21 @@ CREATE TABLE Vote_consistancy(
 	change_id INTEGER NOT NULL,
 	from_table ENUM('Movie', 'Comment') NOT NULL,
 	PRIMARY KEY (change_id, from_table)
+);
+
+
+CREATE TABLE Movie_edit_history(
+	movie_id INTEGER NOT NULL,
+	content TEXT,
+ 	edit_time TIME,
+ 	PRIMARY KEY (movie_id, edit_time),
+	FOREIGN KEY (movie_id) REFERENCES Movie(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Comment_edit_history(
+	comment_id INTEGER NOT NULL,
+	content TEXT,
+ 	edit_time TIME,
+ 	PRIMARY KEY (comment_id, edit_time),
+	FOREIGN KEY (comment_id) REFERENCES Comment(id) ON DELETE CASCADE
 );
