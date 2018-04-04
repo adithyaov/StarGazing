@@ -1,11 +1,14 @@
-DROP PROCEDURE movie_rating_gt;
+
+
+-- Gets all movie which has rating above a rating level (works)
+DROP PROCEDURE movie_rating_gt;     
 DELIMITER //
 CREATE PROCEDURE movie_rating_gt(IN rating_level INT)
 BEGIN   
     SELECT * FROM Movie WHERE Movie.avg_rating > rating_level;
 END//
 DELIMITER ;
-
+-- Gets avg rating of movie with movie id 
 DROP PROCEDURE avg_ratings_of_movie;
 DELIMITER //
 CREATE PROCEDURE avg_ratings_of_movie(IN m_id INT)
@@ -103,5 +106,15 @@ BEGIN
         JOIN Person as p on mpr.person_id = p.id
         WHERE ams.award_id = award_id
             AND YEAR(ams.won_in) = year;
+END//
+DELIMITER ;
+
+
+DROP PROCEDURE  get_cast_of_movie;
+DELIMITER //
+CREATE PROCEDURE get_cast_of_movie (IN movie_id INT)
+BEGIN
+    SELECT m.movie_title, p.first_name, p.last_name,r.role_title FROM Movie as m, Person as p, Role as r, Movie_person_role as mpr
+    WHERE mpr.movie_id = movie_id and mpr.role_id =  r.id and mpr.person_id = p.id and mpr.movie_id=m.id;
 END//
 DELIMITER ;
