@@ -263,7 +263,7 @@ def simple_person_search(arg):
 	return ('200',)
 
 
-def one_person(arg)
+def one_person(arg):
 	id = arg['id']
 	q1 = read_query({
 		'selection': '*',
@@ -296,22 +296,12 @@ def one_person(arg)
 	return (200, [q1, q2])
 
 
-best_movies()
 
-one_movie({
+
+
+
+one_person({
 	'resource_req': 'best_movies',
 	'requestor': 'admin',
 	'id': '2'
-})
-
-simple_movie_search({
-	'resource_req': 'best_movies',
-	'requestor': 'admin',
-	'search': 'iron man'
-})
-
-simple_person_search({
-	'resource_req': 'best_movies',
-	'requestor': 'admin',
-	'search': 'iron man'
 })

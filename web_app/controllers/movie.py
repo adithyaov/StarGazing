@@ -8,7 +8,7 @@ class Movie:
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
-			return render.test(one_movie({'id': id}))
+			return render.index()
 
 		if action_type == 'A':
 			return render.test(best_movies())
