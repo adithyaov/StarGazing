@@ -23,6 +23,22 @@ helpers
 def deny_response(arg):
 	return False
 
+def format_value(value):
+	try:
+		int(value)
+		return str(value)
+	except:
+		pass
+
+	try:
+		float(value)
+		return str(value)
+	except:
+		pass
+
+	return '"{}"'.format(value)
+	
+
 def recurse_criteria(criteria, query_list):
 	new_list = query_list
 	if type(criteria) == type([]):
@@ -34,6 +50,7 @@ def recurse_criteria(criteria, query_list):
 			new_list.append(')')
 		else:
 			(table, column, equality, value) = x
+			value = format_value(value)
 			new_list.append('{}.{} {} {}'.format(table, column, equality, value))
 		new_list.append(criteria[0])
 	return new_list[:-1]
@@ -93,14 +110,15 @@ def insert_query(arg):
 	query_list = []
 	query_list.append('insert into {}'.format(table))
 	
-	query_list.append('(')
-	query_list.append(', '.join(k_list))
-	query_list.append(')')
+	if len(k_list) > 0:
+		query_list.append('(')
+		query_list.append(', '.join(k_list))
+		query_list.append(')')
 
 	query_list.append('values')
 
 	query_list.append('(')
-	query_list.append(', '.join(v_list))
+	query_list.append(', '.join([format_value(v) for v in v_list]))
 	query_list.append(')')
 
 	return ' '.join(query_list)
@@ -114,7 +132,7 @@ def update_query(arg):
 	query_list = []
 	query_list.append('update {} set'.format(table))
 
-	query_list.append(', '.join(['{} = {}'.format(c, v) for (c, v) in update_tuples]))
+	query_list.append(', '.join(['{} = {}'.format(c, format_value(v)) for (c, v) in update_tuples]))
 
 	if len(criteria) > 0:
 		query_list.append('where')
@@ -142,28 +160,24 @@ def delete_query(arg):
 main
 '''
 
-def best_movies(arg):
-	if deny_response(arg):
-		return ('401',)
+def best_movies():
 	
 	query = read_query({
 		'selection': '*',
 		'main_tbl': 'Movie',
 		'join_tbls': [],
 		'criteria': [
-			('Movie', 'avg_rating', '>=', 4)
+			('Movie', 'avg_rating', '>=', '4')
 		]
 	}) + ' order by avg_rating desc limit 15'
 
 	print query
 
-	return ('200',)
+	return ('200', query)
 
 def one_movie(arg):
-	if deny_response(arg):
-		return ('401',)
 	
-	id = str(arg['id'])
+	id = arg['id']
 
 	'''
 	q1 Movie
@@ -214,10 +228,8 @@ def one_movie(arg):
 
 
 def simple_movie_search(arg):
-	if deny_response(arg):
-		return ('401',)
 	
-	search = str(arg['search'])
+	search = arg['search']
 
 	query = read_query({
 		'selection': '*',
@@ -233,10 +245,8 @@ def simple_movie_search(arg):
 	return ('200',)
 
 def simple_person_search(arg):
-	if deny_response(arg):
-		return ('401',)
 	
-	search = str(arg['search'])
+	search = arg['search']
 
 	query = read_query({
 		'selection': '*',
@@ -253,23 +263,45 @@ def simple_person_search(arg):
 	return ('200',)
 
 
+def one_person(arg)
+	id = arg['id']
+	q1 = read_query({
+		'selection': '*',
+		'main_tbl': 'Person',
+		'join_tbls': [],
+		'criteria': [
+			('Person', 'id', '=', id)
+		]
+	})
+
+	selection = ', '.join([
+		'Movie.id', 'Movie.title', 'Movie.avg_rating',
+		'Role.id', 'Role.title'
+	])
+	q2 = read_query({
+		'selection': selection,
+		'main_tbl': 'Movie_person_role',
+		'join_tbls': [
+			('inner', ('Movie', 'id'), ('Movie_person_role', 'movie_id')),
+			('inner', ('Role', 'id'), ('Movie_person_role', 'role_id'))
+		],
+		'criteria': [
+			('Movie_person_role', 'person_id', '=', id)
+		]
+	})
+
+	print q1
+	print q2
+
+	return (200, [q1, q2])
 
 
-
-
-
-
-
-
-best_movies({
-	'resource_req': 'best_movies',
-	'requestor': 'admin'
-})
+best_movies()
 
 one_movie({
 	'resource_req': 'best_movies',
 	'requestor': 'admin',
-	'id': 2
+	'id': '2'
 })
 
 simple_movie_search({

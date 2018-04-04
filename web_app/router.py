@@ -3,7 +3,7 @@ from controllers.hello import Hello
 from controllers.movie import Movie
 
 urls = (
-	'/test/(.+)/(.*)', 'Movie',
+	'/test/(.+)', 'Movie',
     '/(.*)', 'Hello'
 )
 
