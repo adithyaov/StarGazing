@@ -6,15 +6,13 @@ movies
 
 Person
 
-advance search for movies
+advance search
 
 user system
 can comment
 can upvote/downvote
 can rate
 
-admin system
-	for all type of admins
 
 '''
 
@@ -32,7 +30,7 @@ def recurse_criteria(criteria, query_list):
 	for x in criteria[1]:
 		if len(x) == 2:
 			new_list.append('(')
-			new_list.append(recurse_criteria(x, []))
+			new_list = new_list + recurse_criteria(x, [])
 			new_list.append(')')
 		else:
 			(table, column, equality, value) = x
@@ -41,7 +39,7 @@ def recurse_criteria(criteria, query_list):
 	return new_list[:-1]
 
 
-def build_query(arg):
+def read_query(arg):
 	selection = arg['selection']
 	main_tbl = arg['main_tbl']
 	join_tbls = arg['join_tbls']
@@ -80,12 +78,64 @@ def build_query(arg):
 	'''
 	if len(criteria) > 0:
 		query_list.append('where')
-	query_list = query_list + recurse_criteria(criteria, [])
+		query_list = query_list + recurse_criteria(criteria, [])
 
 	return ' '.join(query_list)
 
 
 
+
+def insert_query(arg):
+	table = arg['table']
+	k_list = arg['k_list']
+	v_list = arg['v_list']
+
+	query_list = []
+	query_list.append('insert into {}'.format(table))
+	
+	query_list.append('(')
+	query_list.append(', '.join(k_list))
+	query_list.append(')')
+
+	query_list.append('values')
+
+	query_list.append('(')
+	query_list.append(', '.join(v_list))
+	query_list.append(')')
+
+	return ' '.join(query_list)
+
+
+def update_query(arg):
+	table = arg['table']
+	update_tuples = arg['update_tuples']
+	criteria = arg['criteria']
+
+	query_list = []
+	query_list.append('update {} set'.format(table))
+
+	query_list.append(', '.join(['{} = {}'.format(c, v) for (c, v) in update_tuples]))
+
+	if len(criteria) > 0:
+		query_list.append('where')
+		query_list = query_list + recurse_criteria(criteria, [])
+
+
+	return ' '.join(query_list)
+
+
+def delete_query(arg):
+	table = arg['table']
+	criteria = arg['criteria']
+
+	query_list = []
+	query_list.append('delete from {}'.format(table))
+	
+	if len(criteria) > 0:
+		query_list.append('where')
+		query_list = query_list + recurse_criteria(criteria, [])
+
+	return ' '.join(query_list)
 
 
 '''
@@ -96,7 +146,7 @@ def best_movies(arg):
 	if deny_response(arg):
 		return ('401',)
 	
-	query = build_query({
+	query = read_query({
 		'selection': '*',
 		'main_tbl': 'Movie',
 		'join_tbls': [],
@@ -122,7 +172,7 @@ def one_movie(arg):
 	'''
 
 
-	q1 = build_query({
+	q1 = read_query({
 		'selection': '*',
 		'main_tbl': 'Movie',
 		'join_tbls': [],
@@ -135,7 +185,7 @@ def one_movie(arg):
 		'Person.id', 'Person.first_name', 'Person.last_name',
 		'Role.id', 'Role.title'
 	])
-	q2 = build_query({
+	q2 = read_query({
 		'selection': selection,
 		'main_tbl': 'Movie_person_role',
 		'join_tbls': [
@@ -147,7 +197,7 @@ def one_movie(arg):
 		]
 	})
 
-	q3 = build_query({
+	q3 = read_query({
 		'selection': '*',
 		'main_tbl': 'Comment',
 		'join_tbls': [],
@@ -160,7 +210,7 @@ def one_movie(arg):
 	print q2
 	print q3
 
-	return ('200',)
+	return ('200', [q1, q2, q3])
 
 
 def simple_movie_search(arg):
@@ -169,7 +219,7 @@ def simple_movie_search(arg):
 	
 	search = str(arg['search'])
 
-	query = build_query({
+	query = read_query({
 		'selection': '*',
 		'main_tbl': 'Movie',
 		'join_tbls': [],
@@ -188,7 +238,7 @@ def simple_person_search(arg):
 	
 	search = str(arg['search'])
 
-	query = build_query({
+	query = read_query({
 		'selection': '*',
 		'main_tbl': 'Person',
 		'join_tbls': [],
