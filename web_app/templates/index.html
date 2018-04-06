@@ -1,40 +1,432 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-	<meta charset="utf-8">
-
-	<title>starGazing</title>
-	<meta title="description" content=""> <!-- Add a description -->
-	<meta title="author" content=""> <!-- Your name -->
-
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="/static/css/normalize.css">
-	<link rel="stylesheet" href="/static/css/skull.css">
-	<link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+	<title>StarGazing</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="/static/css/ie6.css" type="text/css" media="all" />
+	<![endif]-->
+	<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-func.js"></script>
 </head>
 <body>
-<div class="header black bg-silver">
-	<form class="p3">
-		<div class="row m0">
-			<div class="column-2">
-				<div class="h2">
-					<span class="black">star</span><span class="bold red">Gazing</span>
-				</div>
-			</div>
-			<div class="column-3"></div>
-			<div class="column-4">
-				<input style="margin: 0px;" type="text" placeholder="Search here">
-			</div>
-			<div class="column-2">
-				<select style="margin: 0px;">
-					<option>Opt 1</option>
-				</select>
-			</div>
-			<div class="column-1">
-				<input style="margin: 0px;" type="submit" value="Gaze!">
+<!-- Shell -->
+<div id="shell">
+	<!-- Header -->
+	<div id="header">
+		<h1 id="logo"><a href="#">StarGazing</a></h1>
+<!-- 		<div class="social">
+			<span>FOLLOW US ON:</span>
+			<ul>
+			    <li><a class="twitter" href="#">twitter</a></li>
+			    <li><a class="facebook" href="#">facebook</a></li>
+			    <li><a class="vimeo" href="#">vimeo</a></li>
+			    <li><a class="rss" href="#">rss</a></li>
+			</ul>
+		</div> -->
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			<ul>
+			    <li><a class="active" href="#">HOME</a></li>
+			    <li><a href="#">IN THEATERS</a></li>
+			    <li><a href="#">COMING SOON</a></li>
+			    <li><a href="#">LOGIN</a></li>
+			</ul>
+		</div>
+		<!-- end Navigation -->
+		
+		<!-- Sub-menu -->
+		<div id="sub-navigation">
+			<ul>
+			    <li><a href="#">TOP RATED</a></li>
+			    <li><a href="#">ACTION</a></li>
+			    <li><a href="#">COMEDY</a></li>
+			    <li><a href="#">ROMANTIC</a></li>
+			</ul>
+			<div id="search">
+				<form action="home_submit" method="get" accept-charset="utf-8">
+					<label for="search-field">SEARCH</label>					
+					<input type="text" name="search field" value="Enter search here" id="search-field" title="Enter search here" class="blink search-field"  />
+					<input type="submit" value="GO!" class="search-button" />
+				</form>
 			</div>
 		</div>
-	</form>
+		<!-- end Sub-Menu -->
+		
+	</div>
+	<!-- end Header -->
+	
+	<!-- Main -->
+	<div id="main">
+		<!-- Content -->
+		<div id="content">
+
+			<!-- Box -->
+			<div class="box">
+				<div class="head">
+					<h2>LATEST TRAILERS</h2>
+					<p class="text-right"><a href="#">See all</a></p>
+				</div>
+
+				<!-- Movie -->
+				<div class="movie">
+					
+					<div class="movie-image">
+						
+						<a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="/static/css/images/movie1.jpg" alt="movie" /></a>
+					</div>
+						
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">SPIDER MAN 2</span></span><img src="/static/css/images/movie2.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">SPIDER MAN 3</span></span><img src="/static/css/images/movie3.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">VALKYRIE</span></span><img src="/static/css/images/movie4.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">GLADIATOR</span></span><img src="/static/css/images/movie5.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie last">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">ICE AGE</span></span><img src="/static/css/images/movie6.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- end Box -->
+			
+			<!-- Box -->
+			<div class="box">
+				<div class="head">
+					<h2>TOP RATED</h2>
+					<p class="text-right"><a href="#">See all</a></p>
+				</div>
+
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">TRANSFORMERS</span></span><img src="/static/css/images/movie7.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">MAGNETO</span></span><img src="/static/css/images/movie8.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">KUNG FU PANDA</span></span><img src="/static/css/images/movie9.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">EAGLE EYE</span></span><img src="/static/css/images/movie10.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">NARNIA</span></span><img src="/static/css/images/movie11.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie last">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">ANGELS &amp; DEMONS</span></span><img src="/static/css/images/movie12.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- end Box -->
+			
+			<!-- Box -->
+			<div class="box">
+				<div class="head">
+					<h2>MOST COMMENTED</h2>
+					<p class="text-right"><a href="#">See all</a></p>
+				</div>
+
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">HOUSE</span></span><img src="/static/css/images/movie13.jpg" alt="movie" /></a>
+					</div>
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">VACANCY</span></span><img src="/static/css/images/movie14.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">MIRRORS</span></span><img src="/static/css/images/movie15.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">THE KINGDOM</span></span><img src="/static/css/images/movie16.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+				<div class="movie">
+					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">MOTIVES</span></span><img src="/static/css/images/movie17.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				
+				<!-- Movie -->
+ 				<div class="movie last">
+ 					<div class="movie-image">
+						<a href="#"><span class="play"><span class="name">THE PRESTIGE</span></span><img src="/static/css/images/movie18.jpg" alt="movie" /></a>
+					</div>	
+					<div class="rating">
+						<p>RATING</p>
+						<div class="stars">
+							<div class="stars-in">
+								
+							</div>
+						</div>
+						<span class="comments">12</span>
+					</div>
+				</div>
+				<!-- end Movie -->
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- end Box -->
+			
+		</div>
+		<!-- end Content -->
+
+		
+		<div class="cl">&nbsp;</div>
+	</div>
+	<!-- end Main -->
+
+	<!-- Footer -->
+	<div id="footer">
+		<p>
+			<a href="#">HOME</a> <span>|</span>
+			<a href="#">LOGIN</a> <span>|</span>
+			<a href="#">IN THEATERS</a> <span>|</span>
+			<a href="#">COMING SOON </a> <span>|</span>
+			<a href="#">ACTION</a> <span>|</span>
+			<a href="#">COMEDY</a> <span>|</span>
+			<a href="#">ROMANTIC</a> <span>|</span>
+			<a href="#">ABOUT</a>
+		</p>
+<!-- 		<p> Designed by <a href="http://chocotemplates.com" target="_blank" title="The Sweetest CSS Templates WorldWide">ChocoTemplates.com</a></p>
+ -->
+	</div>
+	<!-- end Footer -->
 </div>
+<!-- end Shell -->
 </body>
 </html>
