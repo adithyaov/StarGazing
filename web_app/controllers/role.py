@@ -3,17 +3,17 @@ from queries import *
 
 render = web.template.render('templates/')
 
-class Award:
+class Role:
 	def GET(self, action_type):
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
 			return render.test(read_query({
 				'selection': '*',
-				'main_tbl': 'Award',
+				'main_tbl': 'Role',
 				'join_tbls': [],
 				'criteria': [
-					('Award', 'id', '==', id)
+					('Role', 'id', '==', id)
 				]
 			}))
 
@@ -22,35 +22,35 @@ class Award:
 		data = web.input()
 
 		if action_type == 'C':
-			award_name = data.award_name
-			award_description = data.award_description
+			role_title = data.role_title
+			role_description = data.role_description
 			return insert_query({
-				'table': 'Award',
-				'k_list': ['award_name', 'award_description'],
-				'v_list': [award_name, award_description]
+				'table': 'Role',
+				'k_list': ['role_title', 'role_description'],
+				'v_list': [role_title, role_description]
 			})
 
 		if action_type == 'U':
 			id = data.id
-			award_name = data.award_name
-			award_description = data.award_description
+			role_title = data.role_title
+			role_description = data.role_description
 			return update_query({
-				'table': 'Award',
+				'table': 'Role',
 				'update_tuples': [
-					('award_name', award_name),
-					('award_description', award_description)
+					('role_title', role_title),
+					('role_description', role_description)
 				],
 				'criteria': [
-					('Award', 'id', '==', id)
+					('Role', 'id', '==', id)
 				]
 			})
 
 		if action_type == 'D':			
 			id = data.id
 			return delete_query({
-				'table': 'Award',
+				'table': 'Role',
 				'criteria': [
-					('Award', 'id', '==', id)
+					('Role', 'id', '==', id)
 				]
 			})
 

@@ -3,17 +3,17 @@ from queries import *
 
 render = web.template.render('templates/')
 
-class Award:
+class Stage:
 	def GET(self, action_type):
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
 			return render.test(read_query({
 				'selection': '*',
-				'main_tbl': 'Award',
+				'main_tbl': 'Stage',
 				'join_tbls': [],
 				'criteria': [
-					('Award', 'id', '==', id)
+					('Stage', 'id', '==', id)
 				]
 			}))
 
@@ -22,35 +22,35 @@ class Award:
 		data = web.input()
 
 		if action_type == 'C':
-			award_name = data.award_name
-			award_description = data.award_description
+			stage_name = data.stage_name
+			stage_description = data.stage_description
 			return insert_query({
-				'table': 'Award',
-				'k_list': ['award_name', 'award_description'],
-				'v_list': [award_name, award_description]
+				'table': 'Stage',
+				'k_list': ['stage_name', 'stage_description'],
+				'v_list': [stage_name, stage_description]
 			})
 
 		if action_type == 'U':
 			id = data.id
-			award_name = data.award_name
-			award_description = data.award_description
+			stage_name = data.stage_name
+			stage_description = data.stage_description
 			return update_query({
-				'table': 'Award',
+				'table': 'Stage',
 				'update_tuples': [
-					('award_name', award_name),
-					('award_description', award_description)
+					('stage_name', stage_name),
+					('stage_description', stage_description)
 				],
 				'criteria': [
-					('Award', 'id', '==', id)
+					('Stage', 'id', '==', id)
 				]
 			})
 
 		if action_type == 'D':			
 			id = data.id
 			return delete_query({
-				'table': 'Award',
+				'table': 'Stage',
 				'criteria': [
-					('Award', 'id', '==', id)
+					('Stage', 'id', '==', id)
 				]
 			})
 

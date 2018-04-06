@@ -18,26 +18,26 @@ class Movie:
 		data = web.input()
 
 		if action_type == 'C':
-			title = data.title
-			age_r = data.age_r
-			release = data.release
+			movie_title = data.movie_title
+			age_rating = data.age_rating
+			release_date = data.release_date
 			return insert_query({
 				'table': 'Movie',
-				'k_list': ['title', 'age_rating', 'release_date'],
-				'v_list': [title, age_r, release]
+				'k_list': ['movie_title', 'age_rating', 'release_date'],
+				'v_list': [movie_title, age_rating, release_date]
 			})
 
 		if action_type == 'U':
 			id = data.id
-			title = data.title
-			age_r = data.age_r
-			release = data.release
+			movie_title = data.movie_title
+			age_rating = data.age_rating
+			release_date = data.release_date
 			return update_query({
 				'table': 'Movie',
 				'update_tuples': [
-					('title', title),
-					('age_rating', age_r),
-					('release_date', release)
+					('movie_title', movie_title),
+					('age_rating', age_rating),
+					('release_date', release_date)
 				],
 				'criteria': [
 					('Movie', 'id', '==', id)

@@ -10,3 +10,5 @@ CREATE EVENT maintain_vote_consistancy
         DELETE FROM Vote_consistancy WHERE from_table='Comment';
     END//
 DELIMITER ;
+
+

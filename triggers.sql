@@ -10,7 +10,7 @@ BEGIN
     WHERE M.id = new.movie_id;
 END//
 DELIMITER ;
--- trigger is called when new rating is given by an user to a comment
+-- trigger is called when new rating is given by an user to a comment(checked)
 DROP TRIGGER t_update_comment_ratings_i; 
 DELIMITER //
 CREATE TRIGGER t_update_comment_ratings_i 
@@ -71,7 +71,7 @@ BEGIN
     WHERE M.id = old.movie_id;
 END//
 DELIMITER ;
--- trigger is called when  rating  given by an user to a comment is deleted.
+-- trigger is called when  rating  given by an user to a comment is deleted.(checked)
 DROP TRIGGER t_update_comment_ratings_d;
 DELIMITER //
 CREATE TRIGGER t_update_comment_ratings_d
