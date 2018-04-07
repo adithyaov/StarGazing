@@ -2,16 +2,20 @@ import web
 from queries import *
 
 render = web.template.render('templates/')
+db = web.database(dbn='mysql', user='root', pw='kidvscat', db='stargazing')
 
 class Movie:
 	def GET(self, action_type):
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
-			return render.index()
+			(status, queries) = one_movie({'id':id})
+			results = [list(db.query(x)) for x in queries]
+			return render.test(results)
 
 		if action_type == 'A':
-			return render.test(best_movies())
+			(status, q) = best_movies()
+			return render.test(list(db.query(q)))
 
 	def POST(self, action_type):
 

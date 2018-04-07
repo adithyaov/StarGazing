@@ -197,7 +197,7 @@ def one_movie(arg):
 
 	selection = ', '.join([
 		'Person.id', 'Person.first_name', 'Person.last_name',
-		'Role.id', 'Role.title'
+		'Role.id', 'Role.role_title'
 	])
 	q2 = read_query({
 		'selection': selection,
@@ -236,7 +236,7 @@ def simple_movie_search(arg):
 		'main_tbl': 'Movie',
 		'join_tbls': [],
 		'criteria': [
-			('Movie', 'title', 'like', '\'%{}%\''.format(search))
+			('Movie', 'movie_title', 'like', '\'%{}%\''.format(search))
 		]
 	}) + ' order by avg_rating desc limit 15'
 
@@ -275,8 +275,8 @@ def one_person(arg):
 	})
 
 	selection = ', '.join([
-		'Movie.id', 'Movie.title', 'Movie.avg_rating',
-		'Role.id', 'Role.title'
+		'Movie.id', 'Movie.movie_title', 'Movie.avg_rating',
+		'Role.id', 'Role.movie_title'
 	])
 	q2 = read_query({
 		'selection': selection,
