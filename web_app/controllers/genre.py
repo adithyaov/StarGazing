@@ -1,21 +1,26 @@
 import web
 from queries import *
 
-render = web.template.render('templates/')
+render_deep = web.template.render('templates/genre/')
+render_shallow = web.template.render('templates/')
+db = web.database(dbn='mysql', user='root', pw='kidvscat', db='stargazing')
 
 class Genre:
 	def GET(self, action_type):
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
-			return render.test(read_query({
+			return render_shallow.general_display(read_query({
 				'selection': '*',
 				'main_tbl': 'Genre',
 				'join_tbls': [],
 				'criteria': [
-					('Genre', 'id', '==', id)
+					('Genre', 'id', '=', id)
 				]
 			}))
+
+		if action_type == 'CRUD':
+			return render_deep.crud_genre()
 
 	def POST(self, action_type):
 
@@ -24,35 +29,41 @@ class Genre:
 		if action_type == 'C':
 			genre_name = data.genre_name
 			genre_description = data.genre_description
-			return insert_query({
+			db.query(insert_query({
 				'table': 'Genre',
 				'k_list': ['genre_name', 'genre_description'],
 				'v_list': [genre_name, genre_description]
-			})
+			}))
+			return web.seeother('/genre/R?id={}'.format(id))
+
 
 		if action_type == 'U':
 			id = data.id
 			genre_name = data.genre_name
 			genre_description = data.genre_description
-			return update_query({
+			db.query(update_query({
 				'table': 'Genre',
 				'update_tuples': [
 					('genre_name', genre_name),
 					('genre_description', genre_description)
 				],
 				'criteria': [
-					('Genre', 'id', '==', id)
+					('Genre', 'id', '=', id)
 				]
-			})
+			}))
+			return web.seeother('/genre/R?id={}'.format(id))
+
 
 		if action_type == 'D':			
 			id = data.id
-			return delete_query({
+			db.query(delete_query({
 				'table': 'Genre',
 				'criteria': [
-					('Genre', 'id', '==', id)
+					('Genre', 'id', '=', id)
 				]
-			})
+			}))
+			return web.seeother('/genre/CRUD')
+
 
 
 

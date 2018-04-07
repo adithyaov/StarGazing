@@ -34,27 +34,33 @@ class Movie:
 					]
 				}))))
 
+		if action_type == 'CRUD':
+			return render_deep.crud_movie()
+
 
 	def POST(self, action_type):
 
 		data = web.input()
 
 		if action_type == 'C':
+			id = data.movie_id
 			movie_title = data.movie_title
 			age_rating = data.age_rating
 			release_date = data.release_date
-			return insert_query({
+			db.query(insert_query({
 				'table': 'Movie',
-				'k_list': ['movie_title', 'age_rating', 'release_date'],
-				'v_list': [movie_title, age_rating, release_date]
-			})
+				'k_list': ['id', 'movie_title', 'age_rating', 'release_date'],
+				'v_list': [id, movie_title, age_rating, release_date]
+			}))
+			return web.seeother('/movie/R?id={}'.format(id))
+
 
 		if action_type == 'U':
 			id = data.id
 			movie_title = data.movie_title
 			age_rating = data.age_rating
 			release_date = data.release_date
-			return update_query({
+			db.query(update_query({
 				'table': 'Movie',
 				'update_tuples': [
 					('movie_title', movie_title),
@@ -62,18 +68,22 @@ class Movie:
 					('release_date', release_date)
 				],
 				'criteria': [
-					('Movie', 'id', '==', id)
+					('Movie', 'id', '=', id)
 				]
-			})
+			}))
+			return web.seeother('/movie/R?id={}'.format(id))
+
 
 		if action_type == 'D':			
 			id = data.id
-			return delete_query({
+			db.query(delete_query({
 				'table': 'Movie',
 				'criteria': [
-					('Movie', 'id', '==', id)
+					('Movie', 'id', '=', id)
 				]
-			})
+			}))
+			return web.seeother('/movie/CRUD')
+
 
 
 

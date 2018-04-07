@@ -27,6 +27,9 @@ class Comment:
 			movie_id = data.movie_id		
 			id = data.id
 			if str(c_user_id) != '1':
+
+				if movie_id == None:
+					return web.seeother('/comment/CRUD')
 				return web.seeother('/movie/R?id={}'.format(movie_id))
 			else:
 				db.query(delete_query({
@@ -35,6 +38,9 @@ class Comment:
 						('Comment', 'id', '=', id)
 					]
 				}))
+
+				if movie_id == None:
+					return web.seeother('/comment/CRUD')
 				return web.seeother('/movie/R?id={}'.format(movie_id))
 
 
@@ -56,6 +62,8 @@ class Comment:
 				'k_list': ['id', 'content', 'date_posted', 'upvotes', 'downvotes', 'movie_id', 'user_id'],
 				'v_list': [id, content, date_posted, 0, 0, movie_id, user_id]
 			}))
+
+
 			return web.seeother('/movie/R?id={}'.format(movie_id))
 
 		if action_type == 'U':
@@ -72,6 +80,9 @@ class Comment:
 					('Comment', 'id', '=', id)
 				]
 			}))
+
+			if movie_id == None:
+				return web.seeother('/comment/CRUD')
 			return web.seeother('/movie/R?id={}'.format(movie_id))
 
 

@@ -21,6 +21,10 @@ class Comment_user:
 							]
 						}))))
 
+		if action_type == 'CRUD':
+			return render_deep.crud_comment()
+
+
 		if action_type == 'C':
 			movie_id = data.movie_id			
 			comment_id = data.comment_id

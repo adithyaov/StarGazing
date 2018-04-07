@@ -1,7 +1,7 @@
 import web
 from queries import *
 
-render_deep = web.template.render('templates/award/')
+render_deep = web.template.render('templates/movie_user/')
 render_shallow = web.template.render('templates/')
 db = web.database(dbn='mysql', user='root', pw='kidvscat', db='stargazing')
 
