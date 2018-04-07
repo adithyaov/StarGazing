@@ -1,0 +1,60 @@
+$def with (query)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StarGazing</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>StarGazing</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div class="ui-field-contain">
+		    <input name="search-1" id="search-1" value="" type="search">
+		    <select name="select-native-1" id="select-native-1">
+		        <option value="small">Movie</option>
+		        <option value="medium">Star</option>
+		    </select>
+		    <button class="ui-shadow ui-btn ui-corner-all">Button element</button>
+		</div>
+		<div class="ui-field-contain">
+			<ul data-role="listview">
+			    <li><a href="#">Action</a></li>
+			    <li><a href="#">Drama</a></li>
+			    <li><a href="#">Comedy</a></li>
+			    <li><a href="#">Romantic</a></li>
+			</ul>
+		</div>
+
+		<ul data-role="listview" data-inset="true">
+		    <li data-role="list-divider">Best Movies <span class="ui-li-count">$len(query)</span></li>
+		    $for q in query
+			    <li>
+				    <a href="index.html">
+					    <h2>$q['movie_title']</h2>
+					    <p><strong>Min Age:</strong> $q['age_rating']</p>
+					    <p><strong>Release:</strong> $q['release_date']</p>
+					    <p class="ui-li-aside"><strong>$q['avg_rating']</strong> star</p>
+				    </a>
+			    </li>
+		</ul>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>dev version 1.0</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

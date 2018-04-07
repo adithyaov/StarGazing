@@ -19,7 +19,6 @@ can rate
 '''
 helpers
 '''
-
 def deny_response(arg):
 	return False
 
@@ -35,6 +34,9 @@ def format_value(value):
 		return str(value)
 	except:
 		pass
+
+	if value[0] == '.':
+		return '{}'.format(value[1:])
 
 	return '"{}"'.format(value)
 	
@@ -174,6 +176,25 @@ def best_movies():
 	print query
 
 	return ('200', query)
+
+
+def upcoming_movies():
+	query = read_query({
+		'selection': '*',
+		'main_tbl': 'Movie',
+		'join_tbls': [],
+		'criteria': [
+			('Movie', 'release_date', '>', '.CURDATE()')
+		]
+	})
+
+	print query
+
+	return ('200', query)
+
+
+
+
 
 def one_movie(arg):
 	

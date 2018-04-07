@@ -16,6 +16,10 @@ class Movie:
 		if action_type == 'A':
 			(status, q) = best_movies()
 			return render.test(list(db.query(q)))
+			
+		if action_type == 'U':
+			(status, q) = upcoming_movies()
+			return render.test(list(db.query(q)))
 
 	def POST(self, action_type):
 
