@@ -48,12 +48,12 @@ $def with (q1, q2, q3)
 					<a href="">View Edit History</a>
 					<br />
 					Rate: 
-					<a href="">1</a>
-					<a href="">2</a>
-					<a href="">3</a>
-					<a href="">4</a>
-					<a href="">5</a>
-
+					<a href="/movie_user/D?movie_id=$r['id']&user_id=1">0</a>
+					<a href="/movie_user/C?movie_id=$r['id']&user_id=1&rating=1">1</a>
+					<a href="/movie_user/C?movie_id=$r['id']&user_id=1&rating=2">2</a>
+					<a href="/movie_user/C?movie_id=$r['id']&user_id=1&rating=3">3</a>
+					<a href="/movie_user/C?movie_id=$r['id']&user_id=1&rating=4">4</a>
+					<a href="/movie_user/C?movie_id=$r['id']&user_id=1&rating=5">5</a>
 				</center>
 		</div>
 
@@ -88,8 +88,9 @@ $def with (q1, q2, q3)
 									<td>$q[x]</td>
 								</tr>
 						</table>
-						<a href="up">Upvote</a>
-						<a href="up">Downvote</a>
+						<a href="/comment_user/C?movie_id=$q1[0]['id']&comment_id=$q['id']&user_id=1&vote=up">Upvote</a>
+						<a href="/comment_user/C?movie_id=$q1[0]['id']&comment_id=$q['id']&user_id=1&vote=down">Downvote</a>
+						<a href="/comment_user/D?movie_id=$q1[0]['id']&comment_id=$q['id']&user_id=1">Cancel</a>
 					</center>
 			    </li>
 		</ul>
