@@ -8,7 +8,7 @@ from controllers.comment import Comment
 from controllers.genre import Genre
 from controllers.role import Role
 from controllers.person import Person
-from controllers.mpvie_person_role import Movie_person_role
+from controllers.movie_person_role import Movie_person_role
 
 urls = (
 	'/award/(.+)', 'Award',

@@ -20,7 +20,7 @@ class Movie_person_role:
 						}))))
 
 		if action_type == 'CRUD':
-			return render_deep.crud_comment()
+			return render_deep.crud_movie_person_role()
 
 	def POST(self, action_type):
 
@@ -30,13 +30,13 @@ class Movie_person_role:
 			id = data.id
 			role_id = data.role_id
 			movie_id = data.movie_id
-			user_id = data.user_id
+			person_id = data.person_id
 
 
 			db.query(insert_query({
 				'table': 'Movie_person_role',
-				'k_list': ['id', 'role_id','movie_id','user_id'],
-				'v_list': [id, role_id,movie_id,user_id]
+				'k_list': ['id', 'role_id','movie_id','person_id'],
+				'v_list': [id, role_id,movie_id,person_id]
 			}))
 			return web.seeother('/movie_person_role/R?id={}'.format(id))
 
@@ -50,6 +50,6 @@ class Movie_person_role:
 				]
 			}))
 		
-
+			return web.seeother('/movie_person_role/CRUD')
 
 

@@ -5,6 +5,9 @@ render_deep = web.template.render('templates/person/')
 render_shallow = web.template.render('templates/')
 db = web.database(dbn='mysql', user='root', pw='kidvscat', db='stargazing')
 
+# render_deep isnt working
+# print render_deep.crud_person()
+# exit(0)
 
 class Person:
 	def GET(self, action_type):
