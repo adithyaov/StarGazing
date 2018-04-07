@@ -1,7 +1,8 @@
 import web
 from queries import *
 
-render = web.template.render('templates/')
+render_deep = web.template.render('templates/movie/')
+render_shallow = web.template.render('templates/')
 db = web.database(dbn='mysql', user='root', pw='kidvscat', db='stargazing')
 
 class Movie:
@@ -11,15 +12,15 @@ class Movie:
 			id = data.id
 			(status, queries) = one_movie({'id':id})
 			results = [list(db.query(x)) for x in queries]
-			return render.test(results)
+			return render_deep.main(results[0], results[1], results[2])
 
 		if action_type == 'A':
 			(status, q) = best_movies()
-			return render.test(list(db.query(q)))
+			return render_shallow.test(list(db.query(q)))
 			
 		if action_type == 'U':
 			(status, q) = upcoming_movies()
-			return render.test(list(db.query(q)))
+			return render_shallow.test(list(db.query(q)))
 
 	def POST(self, action_type):
 
