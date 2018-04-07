@@ -1,5 +1,3 @@
-$def with (query)
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,21 +31,29 @@ $def with (query)
 		<h2>CRUD Award</h2>
 		<hr>
 
-		<from method="POST" action="/award/CU">
-			<label><b>Create / Update Award</b></label>
+		<form data-ajax="false" method="POST" action="/award/C">
+			<label><b>Create Award</b></label>
 		    <input name="id" type="text" placeholder="Award ID">
 		    <input name="award_name" type="text" placeholder="Award Name">
 		    <input name="award_description" type="text" placeholder="Award description">
-		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Create / Update">
-		</from>
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Create">
+		</form>
 		<hr>
-		<from method="POST" action="/award/CU">
+		<form data-ajax="false" method="GET" action="/award/R">
 			<label><b>Find Award</b></label>
 		    <input name="id" type="text" placeholder="Award ID">
 		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Find">
 		</form>
 		<hr>
-		<from method="POST" action="/award/CU">
+		<form data-ajax="false" method="POST" action="/award/U">
+			<label><b>Update Award</b></label>
+		    <input name="id" type="text" placeholder="Award ID">
+		    <input name="award_name" type="text" placeholder="Award Name">
+		    <input name="award_description" type="text" placeholder="Award description">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Update">
+		</form>
+		<hr>
+		<form data-ajax="false" method="POST" action="/award/D">
 			<label><b>Delete Award</b></label>
 		    <input name="id" type="text" placeholder="Award ID">
 		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Delete">
