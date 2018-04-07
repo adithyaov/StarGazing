@@ -11,10 +11,17 @@ class Person:
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
-			return render_shallow.general_display(one_person({'id': id}))
+			return render_shallow.general_display(list(db.query(read_query({
+							'selection': '*',
+							'main_tbl': 'Person',
+							'join_tbls': [],
+							'criteria': [
+								('Person', 'id', '=', id)
+							]
+						}))))
 
 		if action_type == 'CRUD':
-			return render_deep.crud_person()
+			return render_shallow.crud_person()
 
 	def POST(self, action_type):
 
@@ -28,8 +35,8 @@ class Person:
 			bio = data.bio
 			db.query(insert_query({
 				'table': 'Person',
-				'k_list': ['first_name', 'last_name', 'dob', 'bio'],
-				'v_list': [first_name, last_name, dob, bio]
+				'k_list': ['id', 'first_name', 'last_name', 'dob', 'bio'],
+				'v_list': [id, first_name, last_name, dob, bio]
 			}))
 			return web.seeother('/person/R?id={}'.format(id))
 

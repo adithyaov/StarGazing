@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StarGazing</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		hr {
+			border: 0;
+			border-top: 1px solid #c0c0c0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>StarGazing</h1>
+	</div><!-- /header -->
+
+
+	<div role="main" class="ui-content">
+
+		<h2>CRUD Comment User</h2>
+		<hr>
+
+		<form data-ajax="false" method="POST" action="/comment_user/C">
+			<label><b>Create Comment User</b></label>
+		    <input name="comment_id" type="text" placeholder="Comment ID">
+		    <input name="user_id" type="text" placeholder="User ID">
+		    <input name="vote" type="text" placeholder="vote">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Create">
+		</form>
+		<hr>
+		<form data-ajax="false" method="GET" action="/comment_user/R">
+			<label><b>Find Comment User</b></label>
+		    <input name="comment_id" type="text" placeholder="Comment ID">
+		    <input name="user_id" type="text" placeholder="User ID">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Find">
+		</form>
+		<hr>
+		<form data-ajax="false" method="POST" action="/comment_user/U">
+			<label><b>Update Comment User</b></label>
+		    <input name="comment_id" type="text" placeholder="Comment ID">
+		    <input name="user_id" type="text" placeholder="User ID">
+		    <input name="vote" type="text" placeholder="vote">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Update">
+		</form>
+		<hr>
+		<form data-ajax="false" method="POST" action="/comment_user/D">
+			<label><b>Delete Award</b></label>
+		    <input name="comment_id" type="text" placeholder="Comment ID">
+		    <input name="user_id" type="text" placeholder="User ID">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Delete">
+		</form>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>dev version 1.0</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

@@ -20,7 +20,7 @@ class Comment:
 						}))))
 
 		if action_type == 'CRUD':
-			return render_deep.crud_comment()
+			return render_shallow.crud_comment()
 
 		if action_type == 'D':
 			c_user_id = data.c_user_id

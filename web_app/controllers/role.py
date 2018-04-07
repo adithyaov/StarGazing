@@ -10,14 +10,14 @@ class Role:
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
-			return render_shallow.general_display(read_query({
+			return render_shallow.general_display(list(db.query(read_query({
 				'selection': '*',
 				'main_tbl': 'Role',
 				'join_tbls': [],
 				'criteria': [
 					('Role', 'id', '=', id)
 				]
-			}))
+			}))))
 
 		if action_type == 'CRUD':
 			return render_deep.crud_role()

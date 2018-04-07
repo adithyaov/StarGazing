@@ -10,14 +10,14 @@ class Genre:
 		data = web.input()
 		if action_type == 'R':
 			id = data.id
-			return render_shallow.general_display(read_query({
+			return render_shallow.general_display(list(db.query(read_query({
 				'selection': '*',
 				'main_tbl': 'Genre',
 				'join_tbls': [],
 				'criteria': [
 					('Genre', 'id', '=', id)
 				]
-			}))
+			}))))
 
 		if action_type == 'CRUD':
 			return render_deep.crud_genre()
@@ -27,12 +27,13 @@ class Genre:
 		data = web.input()
 
 		if action_type == 'C':
+			id = data.id
 			genre_name = data.genre_name
 			genre_description = data.genre_description
 			db.query(insert_query({
 				'table': 'Genre',
-				'k_list': ['genre_name', 'genre_description'],
-				'v_list': [genre_name, genre_description]
+				'k_list': ['id', 'genre_name', 'genre_description'],
+				'v_list': [id, genre_name, genre_description]
 			}))
 			return web.seeother('/genre/R?id={}'.format(id))
 

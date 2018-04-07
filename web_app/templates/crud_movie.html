@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MovieGazing</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		hr {
+			border: 0;
+			border-top: 1px solid #c0c0c0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>MovieGazing</h1>
+	</div><!-- /header -->
+
+
+	<div role="main" class="ui-content">
+
+		<h2>CRUD Movie</h2>
+		<hr>
+
+		<form data-ajax="false" method="POST" action="/movie/C">
+			<label><b>Create Movie</b></label>
+		    <input name="id" type="text" placeholder="Movie ID">
+		    <input name="movie_title" type="text" placeholder="Movie title">
+		    <input name="age_rating" type="text" placeholder="Movie age rating">
+		    <input name="release_date" type="text" placeholder="release_date">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Create">
+		</form>
+		<hr>
+		<form data-ajax="false" method="GET" action="/movie/R">
+			<label><b>Find Movie</b></label>
+		    <input name="id" type="text" placeholder="Movie ID">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Find">
+		</form>
+		<hr>
+		<form data-ajax="false" method="POST" action="/movie/U">
+			<label><b>Update Movie</b></label>
+		    <input name="movie_title" type="text" placeholder="Movie title">
+		    <input name="age_rating" type="text" placeholder="Movie age rating">
+		    <input name="release_date" type="text" placeholder="release_date">
+		    
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Create">
+		</form>
+		<hr>
+		<form data-ajax="false" method="POST" action="/movie/D">
+			<label><b>Delete Movie</b></label>
+		    <input name="id" type="text" placeholder="Movie ID">
+		    <input type="submit" class="ui-shadow ui-btn ui-corner-all" value="Delete">
+		</form>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>dev version 1.0</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
