@@ -5,7 +5,7 @@ from controllers.award import Award
 
 urls = (
 	'/award/(.+)', 'Award',
-	'/test/(.+)', 'Movie',
+	'/movie/(.+)', 'Movie',
     '/(.*)', 'Hello'
 )
 

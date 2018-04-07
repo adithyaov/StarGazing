@@ -1,0 +1,125 @@
+$def with (q1, q2, q3)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StarGazing</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		.tab td {
+			border: 1px solid #c0c0c0;
+			margin: 1px;
+			padding: 4px;
+		}
+		hr {
+			border: 0;
+			border-top: 1px solid #c0c0c0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>StarGazing</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<h2>Movie</h2>
+		<hr>
+		<div class="ui-field-contain">
+			$for r in q1:
+				<center>
+					<table class="tab">
+						$for x in r.keys():
+							<tr>
+								<td>$x</td>
+								<td>$r[x]</td>
+							</tr>
+					</table>
+					<a href="">View Edit History</a>
+					<br />
+					Rate: 
+					<a href="">1</a>
+					<a href="">2</a>
+					<a href="">3</a>
+					<a href="">4</a>
+					<a href="">5</a>
+
+				</center>
+		</div>
+
+
+		<ul data-role="listview" data-inset="true">
+		    <li data-role="list-divider">Cast <span class="ui-li-count">$len(q2)</span></li>
+		    $for q in q2
+			    <li>
+				    
+		    		<center>
+						<table class="tab">
+							$for x in q.keys():
+								<tr>
+									<td>$x</td>
+									<td>$q[x]</td>
+								</tr>
+						</table>
+					</center>
+				    
+			    </li>
+		</ul>
+
+		<ul data-role="listview" data-inset="true">
+		    <li data-role="list-divider">Comments <span class="ui-li-count">$len(q3)</span></li>
+		    $for q in q3
+			    <li>
+			    	<center>
+						<table class="tab">
+							$for x in q.keys():
+								<tr>
+									<td>$x</td>
+									<td>$q[x]</td>
+								</tr>
+						</table>
+						<a href="up">Upvote</a>
+						<a href="up">Downvote</a>
+					</center>
+			    </li>
+		</ul>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>dev version 1.0</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
