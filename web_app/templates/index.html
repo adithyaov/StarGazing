@@ -1,4 +1,4 @@
-$def with (query)
+$def with (q1, q2, q3)
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +10,19 @@ $def with (query)
 	<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		.tab td {
+			border: 1px solid #c0c0c0;
+			margin: 1px;
+			padding: 4px;
+		}
+		hr {
+			border: 0;
+			border-top: 1px solid #c0c0c0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
 </head>
 <body>
 
@@ -20,28 +33,48 @@ $def with (query)
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		<div class="ui-field-contain">
-		    <input name="search-1" id="search-1" value="" type="search">
-		    <select name="select-native-1" id="select-native-1">
-		        <option value="small">Movie</option>
-		        <option value="medium">Star</option>
+		<form method="GET" action="/movie/S">
+		    <input name="search" type="search">
+		    <select name="on">
+		        <option value="movie">Movie</option>
+		        <option value="person">Person</option>
 		    </select>
-		    <button class="ui-shadow ui-btn ui-corner-all">Button element</button>
-		</div>
-		<div class="ui-field-contain">
-			<ul data-role="listview">
-			    <li><a href="#">Action</a></li>
-			    <li><a href="#">Drama</a></li>
-			    <li><a href="#">Comedy</a></li>
-			    <li><a href="#">Romantic</a></li>
-			</ul>
-		</div>
+		    <button class="ui-shadow ui-btn ui-corner-all">GAZE :-)</button>
+		</form>
+
+		<hr>
 
 		<ul data-role="listview" data-inset="true">
-		    <li data-role="list-divider">Best Movies <span class="ui-li-count">$len(query)</span></li>
-		    $for q in query
+		    <li data-role="list-divider">Best Movies <span class="ui-li-count">$len(q1)</span></li>
+		    $for q in q1
 			    <li>
-				    <a href="index.html">
+				    <a href="/movie/R?id=$q['id']">
+					    <h2>$q['movie_title']</h2>
+					    <p><strong>Min Age:</strong> $q['age_rating']</p>
+					    <p><strong>Release:</strong> $q['release_date']</p>
+					    <p class="ui-li-aside"><strong>$q['avg_rating']</strong> star</p>
+				    </a>
+			    </li>
+		</ul>
+
+		<ul data-role="listview" data-inset="true">
+		    <li data-role="list-divider">Upcoming Movies <span class="ui-li-count">$len(q2)</span></li>
+		    $for q in q2
+			    <li>
+				    <a href="/movie/R?id=$q['id']">
+					    <h2>$q['movie_title']</h2>
+					    <p><strong>Min Age:</strong> $q['age_rating']</p>
+					    <p><strong>Release:</strong> $q['release_date']</p>
+					    <p class="ui-li-aside"><strong>$q['avg_rating']</strong> star</p>
+				    </a>
+			    </li>
+		</ul>
+
+		<ul data-role="listview" data-inset="true">
+		    <li data-role="list-divider">All Movies <span class="ui-li-count">$len(q3)</span></li>
+		    $for q in q3
+			    <li>
+				    <a href="/movie/R?id=$q['id']">
 					    <h2>$q['movie_title']</h2>
 					    <p><strong>Min Age:</strong> $q['age_rating']</p>
 					    <p><strong>Release:</strong> $q['release_date']</p>

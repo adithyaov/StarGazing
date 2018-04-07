@@ -14,9 +14,29 @@ class Movie:
 			results = [list(db.query(x)) for x in queries]
 			return render_deep.main(results[0], results[1], results[2])
 
+		if action_type == 'S':
+			search = data.search
+			on = data.on
+
+			if on == 'person':
+				(status, q) = simple_person_search({'search': search})
+			else:
+				(status, q) = simple_movie_search({'search': search})
+			print q
+			return render_shallow.general_display(list(db.query(q)))
+
+
+
 		if action_type == 'A':
-			(status, q) = best_movies()
-			return render_shallow.test(list(db.query(q)))
+			(status, q1) = best_movies()
+			(status, q2) = upcoming_movies()
+			q3 = read_query({
+					'selection': '*',
+					'main_tbl': 'Movie',
+					'join_tbls': [],
+					'criteria': []
+				})
+			return render_shallow.index(list(db.query(q1)), list(db.query(q2)), list(db.query(q3)))
 			
 		if action_type == 'U':
 			(status, q) = upcoming_movies()

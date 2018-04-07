@@ -257,13 +257,13 @@ def simple_movie_search(arg):
 		'main_tbl': 'Movie',
 		'join_tbls': [],
 		'criteria': [
-			('Movie', 'movie_title', 'like', '\'%{}%\''.format(search))
+			('Movie', 'movie_title', 'like', '%{}%'.format(search))
 		]
 	}) + ' order by avg_rating desc limit 15'
 
 	print query
 
-	return ('200',)
+	return ('200', query)
 
 def simple_person_search(arg):
 	
@@ -274,14 +274,14 @@ def simple_person_search(arg):
 		'main_tbl': 'Person',
 		'join_tbls': [],
 		'criteria': ('or', [
-					('Person', 'first_name', 'like', '\'%{}%\''.format(search)),
-					('Person', 'last_name', 'like', '\'%{}%\''.format(search))
+					('Person', 'first_name', 'like', '%{}%'.format(search)),
+					('Person', 'last_name', 'like', '%{}%'.format(search))
 				])
 	}) + ' limit 15'
 
 	print query
 
-	return ('200',)
+	return ('200', query)
 
 
 def one_person(arg):
