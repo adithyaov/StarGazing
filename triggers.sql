@@ -97,7 +97,7 @@ AFTER UPDATE ON Comment
 FOR EACH ROW 
 BEGIN
     IF NEW.content <> OLD.content THEN
-        INSERT INTO Comment_edit_history values (NEW.id, NEW.content,CURTIME());
+        INSERT INTO Comment_edit_history values (NEW.id, OLD.content,CURTIME());
     END IF;
 END//
 DELIMITER ;
@@ -109,7 +109,7 @@ AFTER UPDATE ON Movie
 FOR EACH ROW 
 BEGIN
     IF NEW.movie_title <> OLD.movie_title THEN
-       INSERT INTO Movie_edit_history values (NEW.id,NEW.movie_title,CURTIME());
+       INSERT INTO Movie_edit_history values (NEW.id,OLD.movie_title,CURTIME());
     END IF;
 END//
 DELIMITER ;

@@ -45,7 +45,7 @@ $def with (q1, q2, q3)
 								<td>$r[x]</td>
 							</tr>
 					</table>
-					<a href="">View Edit History</a>
+					<a href="/movie/EH?id=$r['id']">View Edit History</a>
 					<br />
 					Rate: 
 					<a href="/movie_user/D?movie_id=$r['id']&user_id=1">0</a>
@@ -87,6 +87,10 @@ $def with (q1, q2, q3)
 									<td>$x</td>
 									<td>$q[x]</td>
 								</tr>
+							<tr>
+								<td>Delete</td>
+								<td><a href="/comment/D?movie_id=$q1[0]['id']&id=$q['id']&c_user_id=$q['user_id']">Click here!</a></td>
+							</tr>
 						</table>
 						<a href="/comment_user/C?movie_id=$q1[0]['id']&comment_id=$q['id']&user_id=1&vote=up">Upvote</a>
 						<a href="/comment_user/C?movie_id=$q1[0]['id']&comment_id=$q['id']&user_id=1&vote=down">Downvote</a>
@@ -94,6 +98,13 @@ $def with (q1, q2, q3)
 					</center>
 			    </li>
 		</ul>
+		<h3>Add Comment</h3>
+		<form method="POST" action="/comment/C">
+			<input name="id" type="text" placeholder="Add ID here!">
+			<input name="content" type="text" placeholder="Add comment here!">
+			<input type="hidden" name="movie_id" value="$q1[0]['id']">
+			<input type="submit" name="" value="Post">
+		</form>
 	</div><!-- /content -->
 
 	<div data-role="footer">

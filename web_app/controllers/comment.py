@@ -22,6 +22,23 @@ class Comment:
 		if action_type == 'CRUD':
 			return render_deep.crud_comment()
 
+		if action_type == 'D':
+			c_user_id = data.c_user_id
+			movie_id = data.movie_id		
+			id = data.id
+			if str(c_user_id) != '1':
+				return web.seeother('/movie/R?id={}'.format(movie_id))
+			else:
+				db.query(delete_query({
+					'table': 'Comment',
+					'criteria': [
+						('Comment', 'id', '=', id)
+					]
+				}))
+				return web.seeother('/movie/R?id={}'.format(movie_id))
+
+
+
 	def POST(self, action_type):
 
 		data = web.input()
@@ -29,22 +46,21 @@ class Comment:
 		if action_type == 'C':
 			id = data.id
 			content = data.content
-			date_posted = data.date_posted
-			upvotes = data.upvotes
-			downvotes = data.downvotes
+			date_posted = '2018-4-7'
 			movie_id = data.movie_id
-			user_id = data.user_id
+			user_id = 1
 
 
 			db.query(insert_query({
 				'table': 'Comment',
-				'k_list': ['id', 'content', 'date_posted','upvotes','downvotes','movie_id','user_id'],
-				'v_list': [id, content, date_posted,upvotes,downvotes,movie_id,user_id]
+				'k_list': ['id', 'content', 'date_posted', 'upvotes', 'downvotes', 'movie_id', 'user_id'],
+				'v_list': [id, content, date_posted, 0, 0, movie_id, user_id]
 			}))
-			return web.seeother('/comment/R?id={}'.format(id))
+			return web.seeother('/movie/R?id={}'.format(movie_id))
 
 		if action_type == 'U':
 			id = data.id
+			movie_id = data.movie_id
 			content = data.content
 			db.query(update_query({
 				'table': 'Comment',
@@ -56,17 +72,7 @@ class Comment:
 					('Comment', 'id', '=', id)
 				]
 			}))
-			return web.seeother('/comment/R?id={}'.format(id))
-
-		if action_type == 'D':			
-			id = data.id
-			db.query(delete_query({
-				'table': 'Comment',
-				'criteria': [
-					('Comment', 'id', '=', id)
-				]
-			}))
-			return web.seeother('/comment/CRUD')
+			return web.seeother('/movie/R?id={}'.format(movie_id))
 
 
 

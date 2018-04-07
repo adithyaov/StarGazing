@@ -22,6 +22,19 @@ class Movie:
 			(status, q) = upcoming_movies()
 			return render_shallow.test(list(db.query(q)))
 
+		if action_type == 'EH':
+			id = data.id
+			
+			return render_shallow.general_display(list(db.query(read_query({
+					'selection': '*',
+					'main_tbl': 'Movie_edit_history',
+					'join_tbls': [],
+					'criteria': [
+						('Movie_edit_history', 'movie_id', '=', id)
+					]
+				}))))
+
+
 	def POST(self, action_type):
 
 		data = web.input()
